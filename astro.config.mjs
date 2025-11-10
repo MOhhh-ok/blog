@@ -7,6 +7,7 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://mohhh-ok.github.io",
   base: "/blog",
   integrations: [mdx(), sitemap(), pagefind()],
 });
