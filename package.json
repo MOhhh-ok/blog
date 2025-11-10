@@ -1,21 +1,18 @@
 {
-  "name": "@repo/nextra-test",
-  "private": true,
+  "name": "gullible-galaxy",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "next": "^15.5.6",
-    "nextra": "^4.6.0",
-    "nextra-theme-blog": "^4.6.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "24.10.0",
-    "@types/react": "19.2.2",
-    "typescript": "^5.9.3"
+    "@astrojs/mdx": "^4.3.10",
+    "@astrojs/rss": "^4.0.13",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.15.4",
+    "sharp": "^0.34.3"
   }
 }
