@@ -1,8 +1,16 @@
 ---
+import { getCollection } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+const posts = await getCollection("blog");
+posts.sort((a, b) =>
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+// const categories = [
+//   ...new Set(posts.flatMap((post) => post.data.categories || [])),
+// ].sort();
 ---
 
 <!DOCTYPE html>
@@ -12,67 +20,86 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
   </head>
   <body>
     <Header />
-    <main>
-      <p>
-        ご訪問いただき、ありがとうございます。フリーランスエンジニアの太田雅昭です。
-        フルスタックで、バックエンドからフロントエンドまで作成しています。
-      </p>
-      <ul>
-        <li>
-          クラウドワークス：<a
-            href="https://crowdworks.jp/public/employees/3645413K"
-          >https://crowdworks.jp/public/employees/3645413K</a>
-        </li>
-        <li>
-          ランサーズ：<a href="https://www.lancers.jp/profile/masaakiota"
-          >https://www.lancers.jp/profile/masaakiota</a>
-        </li>
-      </ul>
-      <h2>
-        お知らせ
-      </h2>
+    <main style={{ width: "1000px" }}>
+      <div style={{ display: "flex", gap: "2rem" }}>
+        <div>
+          <p>
+            ご訪問いただき、ありがとうございます。フリーランスエンジニアの太田雅昭です。
+            フルスタックで、バックエンドからフロントエンドまで作成しています。
+          </p>
+          <ul>
+            <li>
+              クラウドワークス：<a
+                href="https://crowdworks.jp/public/employees/3645413K"
+              >https://crowdworks.jp/public/employees/3645413K</a>
+            </li>
+            <li>
+              ランサーズ：<a href="https://www.lancers.jp/profile/masaakiota"
+              >https://www.lancers.jp/profile/masaakiota</a>
+            </li>
+          </ul>
+          <h2>
+            お知らせ
+          </h2>
 
-      <ul>
-        <li>
-          2025年10月14日 TypeSafeなDialog
-          headlessライブラリ、react-dialog-hubを公開しました。
-        </li>
-        <li>
-          2025年9月14日 TypeSafeなi18nライブラリ、canopy-i18nを公開しました。
-        </li>
-        <li>
-          2025年4月1日　認定ランサー認可いただきました。ありがとうございます。
-        </li>
-        <li>
-          2024年1月度、プロクラウドワーカー認定いただきました。ありがとうございます。
-        </li>
-      </ul>
+          <ul>
+            <li>
+              2025年10月14日 TypeSafeなDialog
+              headlessライブラリ、react-dialog-hubを公開しました。
+            </li>
+            <li>
+              2025年9月14日
+              TypeSafeなi18nライブラリ、canopy-i18nを公開しました。
+            </li>
+            <li>
+              2025年4月1日　認定ランサー認可いただきました。ありがとうございます。
+            </li>
+            <li>
+              2024年1月度、プロクラウドワーカー認定いただきました。ありがとうございます。
+            </li>
+          </ul>
 
-      <h2>
-        公開ライブラリ
-      </h2>
+          <h2>
+            公開ライブラリ
+          </h2>
 
-      以下のライブラリを公開しています。
-      <h3>
-        JavaScript
-      </h3>
+          以下のライブラリを公開しています。
+          <h3>
+            JavaScript
+          </h3>
 
-      <ul>
-        <li>canopy-i18n: TypeSafeなi18nライブラリ</li>
-        <li>
-          react-dialog-hub:React用のHeadless Dialogライブラリ
-        </li>
-        <li>
-          react-cursor-pagination: React用のCursor based pagination UI
-        </li>
-        <li>
-          gasup: GASのバンドルを簡単にするCLIツール
-        </li>
-      </ul>
-      <h3>Dart</h3>
-      <ul>
-        <li>dart_slack_bot: Slack bot送信用ライブラリ</li>
-      </ul>
+          <ul>
+            <li>canopy-i18n: TypeSafeなi18nライブラリ</li>
+            <li>
+              react-dialog-hub:React用のHeadless Dialogライブラリ
+            </li>
+            <li>
+              react-cursor-pagination: React用のCursor based pagination UI
+            </li>
+            <li>
+              gasup: GASのバンドルを簡単にするCLIツール
+            </li>
+          </ul>
+          <h3>Dart</h3>
+          <ul>
+            <li>dart_slack_bot: Slack bot送信用ライブラリ</li>
+          </ul>
+        </div>
+        <div>
+          <h3>最近の投稿</h3>
+          <ul>
+            {
+              posts.slice(0, 20).map((post) => (
+                <li>
+                  <a href={`${import.meta.env.BASE_URL}/blog/${post.id}`}>
+                    {post.data.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
     </main>
     <Footer />
   </body>
