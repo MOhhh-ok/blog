@@ -1,0 +1,64 @@
+---
+import type { Category } from "@/categories";
+import { getCollection } from "astro:content";
+import * as R from "remeda";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { PATHS } from "../../paths";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  let categories = posts.flatMap(p => p.data.categories);
+  categories = R.unique(categories);
+
+  return categories.map(category => ({
+    params: { category },
+    props: {
+      category,
+      posts: posts.filter(p =>
+        p.data.categories?.includes(category as Category)
+      ),
+    },
+  }));
+}
+
+const { category, posts } = Astro.props;
+const sortedPosts = posts.sort((a, b) =>
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <BaseHead
+      title={`${category} - ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header />
+    <main style={{ width: "1000px", margin: "0 auto", padding: "2rem" }}>
+      <h1>カテゴリ: {category}</h1>
+      <ul>
+        {
+          sortedPosts.map(post => (
+            <li>
+              <a href={PATHS.posts.post(post.id)}>{post.data.title}</a>
+              <span style={{ marginLeft: "1rem", color: "#666" }}>
+                {
+                  new Date(post.data.pubDate).toLocaleDateString(
+                    "ja-JP",
+                  )
+                }
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+    <Footer />
+  </body>
+</html>

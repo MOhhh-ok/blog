@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】タイムゾーンを吸収するbranded type"
 pubDate: 2025-09-04
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

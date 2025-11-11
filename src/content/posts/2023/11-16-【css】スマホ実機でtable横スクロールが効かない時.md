@@ -1,7 +1,7 @@
 ---
 title: "【CSS】スマホ実機でTable横スクロールが効かない時"
 pubDate: 2023-11-16
-categories: ["HTML/CSS"]
+categories: ["CSS"]
 tags: []
 ---
 

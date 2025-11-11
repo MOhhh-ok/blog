@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】自作ライブラリで.tsファイルにジャンプできるようにする"
 pubDate: 2023-11-13
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

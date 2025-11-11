@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】Dexieで型安全にIndexedDBを操作する"
 pubDate: 2024-12-19
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

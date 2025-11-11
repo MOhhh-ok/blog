@@ -1,7 +1,7 @@
 ---
 title: "【JavaScript】Unicode character class escapeを使う【正規表現】"
 pubDate: 2025-01-17
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

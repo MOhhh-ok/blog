@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】知っていると便利な型定義"
 pubDate: 2024-02-08
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

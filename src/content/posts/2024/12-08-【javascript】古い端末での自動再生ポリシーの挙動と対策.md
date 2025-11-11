@@ -1,7 +1,7 @@
 ---
 title: "【JavaScript】古い端末での自動再生ポリシーの挙動と対策"
 pubDate: 2024-12-08
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

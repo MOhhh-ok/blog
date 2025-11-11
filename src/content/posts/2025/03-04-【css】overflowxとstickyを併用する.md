@@ -1,7 +1,7 @@
 ---
 title: "【CSS】overflowXとstickyを併用する"
 pubDate: 2025-03-04
-categories: ["HTML/CSS"]
+categories: ["HTML"]
 tags: []
 ---
 
@@ -15,7 +15,7 @@ Stickyは一番近いScroll Containerを基準にして機能します。通常�
 
 そのような中、overflowをどうしても使いたい時もあります。しかし上述の通り、親でoverflowを指定すると、Stickyは効かなくなります。
 
-```markup
+```html
 <!-- overflow-x:auto 横スクロール可能にする -->
 <div style="overflow-x:auto">
   <!-- position:sticky;top:0; Stickyな要素。効かない -->
@@ -37,7 +37,7 @@ Stickyは一番近いScroll Containerを基準にして機能します。通常�
 
 以下のようにheightを指定すると、overflowX: autoを使用してもstickyが動作します。
 
-```markup
+```html
 <!-- overflow-x:auto 横スクロール可能にする -->
 <div style="overflow-x:auto;height:100vh;">
   <!-- position:sticky;top:0; Stickyな要素-->

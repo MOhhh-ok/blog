@@ -1,7 +1,7 @@
 ---
 title: "【canopy-i18n】型安全に使えるi18nライブラリ【TypeScript】"
 pubDate: 2025-09-15
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

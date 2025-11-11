@@ -1,7 +1,7 @@
 ---
 title: "【npm】2025年8月26日以降のパッケージの危険性と対策【Shai-Hulud】"
 pubDate: 2025-09-18
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

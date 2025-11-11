@@ -1,7 +1,7 @@
 ---
 title: "【Quill】&lt;p>&lt;br>&lt;/p>を抑制する"
 pubDate: 2024-06-13
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

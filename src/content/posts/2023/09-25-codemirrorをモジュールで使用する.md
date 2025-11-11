@@ -1,7 +1,7 @@
 ---
 title: "CodeMirrorをモジュールで使用する"
 pubDate: 2023-09-25
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

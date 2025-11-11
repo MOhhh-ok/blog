@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】error TS5055: Cannot write file 'xxx.d.ts' because it would overwrite input file."
 pubDate: 2024-01-10
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】Zodのbrandでパスワード漏洩を防いだり色々する"
 pubDate: 2025-06-12
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 
@@ -54,7 +54,7 @@ function getUser(): SafeUser {
     passwordHash: 'xxx'
   }
 
-  // return user // そのまま返すと型エラーになる  
+  // return user // そのまま返すと型エラーになる
 
   return safeUserSchema.parse(user) // 検証すれば型が合う
 }
@@ -82,7 +82,7 @@ function test(animal: Animal) {
   console.log(animal);
 }
 
-test(ENV_ANIMAL1); // ok 
+test(ENV_ANIMAL1); // ok
 test(ENV_ANIMAL2); // ok
 test(animal3); // 検証されていないため型エラー
 ```

@@ -1,7 +1,7 @@
 ---
 title: "【JavaScript】配列のfilterは空オブジェクトを削除しない"
 pubDate: 2023-11-22
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

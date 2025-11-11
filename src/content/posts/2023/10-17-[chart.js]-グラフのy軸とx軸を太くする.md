@@ -1,7 +1,7 @@
 ---
 title: "[Chart.js] グラフのY軸とX軸を太くする"
 pubDate: 2023-10-17
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

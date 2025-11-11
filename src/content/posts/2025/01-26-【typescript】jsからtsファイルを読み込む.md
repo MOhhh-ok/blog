@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】JSからTSファイルを読み込む"
 pubDate: 2025-01-26
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

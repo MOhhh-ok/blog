@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】有効にすべきオプションまとめ"
 pubDate: 2025-07-05
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【JavaScript】Playwrightのevaluateはクロージャ諸々使えない"
 pubDate: 2024-12-16
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

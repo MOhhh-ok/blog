@@ -1,7 +1,7 @@
 ---
 title: "【JavaScript】package公開時に、.gitignoreを含める"
 pubDate: 2025-01-15
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

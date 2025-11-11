@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】Markdownをいい感じのプレーンテキストに変換する"
 pubDate: 2025-01-27
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 
@@ -88,17 +88,17 @@ function renderMd(markdown: string) {
 
 const markdownText = `
   # タイトルtitle
-  
+
   本文1
-  
+
   ## タイトル2
-  
-  本文2 
-  
+
+  本文2
+
   ### タイトル3
-  
+
   本文3
-  
+
   - 箇条書き1
   - 箇条書き2
   `;

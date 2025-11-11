@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】Branded typeでセキュリティを強化する"
 pubDate: 2025-08-04
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

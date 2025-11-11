@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】levelでキーバリューを永続化する"
 pubDate: 2025-01-13
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

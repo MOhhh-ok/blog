@@ -1,7 +1,7 @@
 ---
 title: "【JavaScript】ESM, CommonJSの互換性を考えてみる"
 pubDate: 2024-11-20
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

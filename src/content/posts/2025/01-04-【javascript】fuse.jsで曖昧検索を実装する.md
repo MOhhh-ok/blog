@@ -1,7 +1,7 @@
 ---
 title: "【JavaScript】Fuse.jsで曖昧検索を実装する"
 pubDate: 2025-01-04
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【Chart.js】aspectRatioの動的設定がうまくいかなかった話"
 pubDate: 2023-10-10
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

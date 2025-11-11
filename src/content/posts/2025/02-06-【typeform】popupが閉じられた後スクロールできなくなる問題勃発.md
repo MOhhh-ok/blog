@@ -1,7 +1,7 @@
 ---
 title: "【TypeForm】Popupが閉じられた後スクロールできなくなる問題勃発"
 pubDate: 2025-02-06
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

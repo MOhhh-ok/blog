@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】指定型から新規型を生成する機能をまとめてみた。Pick, Omit など。"
 pubDate: 2024-02-06
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 

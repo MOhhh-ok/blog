@@ -1,7 +1,7 @@
 ---
 title: "【TypeScript】なんじゃこりゃ！？Vitestが便利すぎる【感想】"
 pubDate: 2025-01-11
-categories: ["JavaScript/TypeScript"]
+categories: ["TypeScript"]
 tags: []
 ---
 
@@ -44,7 +44,7 @@ Jestの文法をほぼそのまま使える
 設定が簡単（多くの場合は設定不要）
 Viteの高速な開発サーバーの恩恵を受けられる
 TypeScriptとの相性が抜群
-最近のモダンなJavaScript/TypeScriptプロジェクトでは、vitestの採用が増えてきていますね！特にViteベースのプロジェクトでは、追加の設定なしですぐに使い始められる点が大きな魅力です。
+最近のモダンなTypeScriptプロジェクトでは、vitestの採用が増えてきていますね！特にViteベースのプロジェクトでは、追加の設定なしですぐに使い始められる点が大きな魅力です。
 ```
 
 絵文字まで使って、喜びを共有してくれました。
