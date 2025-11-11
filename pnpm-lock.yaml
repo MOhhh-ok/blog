@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^4.3.10
-        version: 4.3.10(astro@5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3))
+        version: 4.3.10(astro@5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3))
       '@astrojs/rss':
         specifier: ^4.0.13
         version: 4.0.13
@@ -18,13 +18,19 @@ importers:
         specifier: ^3.6.0
         version: 3.6.0
       astro:
-        specifier: ^5.15.4
-        version: 5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)
+        specifier: ^5.15.5
+        version: 5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)
       astro-pagefind:
         specifier: ^1.8.5
-        version: 1.8.5(astro@5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3))
+        version: 1.8.5(astro@5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3))
+      dayjs:
+        specifier: ^1.11.19
+        version: 1.11.19
+      remeda:
+        specifier: ^2.32.0
+        version: 2.32.0
       sharp:
-        specifier: ^0.34.3
+        specifier: ^0.34.5
         version: 0.34.5
     devDependencies:
       '@types/node':
@@ -681,8 +687,8 @@ packages:
     peerDependencies:
       astro: ^2.0.4 || ^3 || ^4 || ^5
 
-  astro@5.15.4:
-    resolution: {integrity: sha512-0g/68hLHEJZF2nYUcZM5O0kOnzCsCIf8eA9+0jfBAxp4ycujrIHRgIOdZCFKL9GoTsn8AypWbziypH5aEIF+aA==}
+  astro@5.15.5:
+    resolution: {integrity: sha512-A56u4H6gFHEb0yRHcGTOADBb7jmEwfDjQpkqVV/Z+ZWlu6mYuwCrIcOUtZjNno0chrRKmOeZWDofW23ql18y3w==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -776,6 +782,9 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
+
+  dayjs@1.11.19:
+    resolution: {integrity: sha512-t5EcLVS6QPBNqM2z8fakk/NKel+Xzshgt8FFKAn+qwlD1pzZWxh0nVCrvFK7ZDb6XucZeF9z8C7CBWTRIVApAw==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -1368,6 +1377,9 @@ packages:
   remark-stringify@11.0.0:
     resolution: {integrity: sha512-1OSmLd3awB/t8qdoEOMazZkNsfVTeY4fTsgzcQFdXNq8ToTN4ZGwrMnlda4K6smTFKD+GRV6O48i6Z4iKgPPpw==}
 
+  remeda@2.32.0:
+    resolution: {integrity: sha512-BZx9DsT4FAgXDTOdgJIc5eY6ECIXMwtlSPQoPglF20ycSWigttDDe88AozEsPPT4OWk5NujroGSBC1phw5uU+w==}
+
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
 
@@ -1710,8 +1722,8 @@ packages:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
 
-  yocto-queue@1.2.1:
-    resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
+  yocto-queue@1.2.2:
+    resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
 
   yocto-spinner@0.2.3:
@@ -1771,12 +1783,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.3.10(astro@5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3))':
+  '@astrojs/mdx@4.3.10(astro@5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.8
       '@mdx-js/mdx': 3.1.1
       acorn: 8.15.0
-      astro: 5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)
+      astro: 5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)
       es-module-lexer: 1.7.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -2261,14 +2273,14 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-pagefind@1.8.5(astro@5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)):
+  astro-pagefind@1.8.5(astro@5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)):
     dependencies:
       '@pagefind/default-ui': 1.4.0
-      astro: 5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)
+      astro: 5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3)
       pagefind: 1.4.0
       sirv: 3.0.2
 
-  astro@5.15.4(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3):
+  astro@5.15.5(@types/node@24.10.0)(rollup@4.53.2)(tsx@4.20.6)(typescript@5.9.3):
     dependencies:
       '@astrojs/compiler': 2.13.0
       '@astrojs/internal-helpers': 0.7.4
@@ -2438,6 +2450,8 @@ snapshots:
       source-map-js: 1.2.1
 
   cssesc@3.0.0: {}
+
+  dayjs@1.11.19: {}
 
   debug@4.4.3:
     dependencies:
@@ -3277,7 +3291,7 @@ snapshots:
 
   p-limit@6.2.0:
     dependencies:
-      yocto-queue: 1.2.1
+      yocto-queue: 1.2.2
 
   p-queue@8.1.1:
     dependencies:
@@ -3468,6 +3482,10 @@ snapshots:
       '@types/mdast': 4.0.4
       mdast-util-to-markdown: 2.1.2
       unified: 11.0.5
+
+  remeda@2.32.0:
+    dependencies:
+      type-fest: 4.41.0
 
   resolve-pkg-maps@1.0.0: {}
 
@@ -3809,7 +3827,7 @@ snapshots:
 
   yargs-parser@21.1.1: {}
 
-  yocto-queue@1.2.1: {}
+  yocto-queue@1.2.2: {}
 
   yocto-spinner@0.2.3:
     dependencies:

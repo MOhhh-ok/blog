@@ -4,6 +4,8 @@ import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { PATHS } from "../paths";
+
 const posts = await getCollection("blog");
 posts.sort((a, b) =>
   new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
@@ -91,7 +93,7 @@ posts.sort((a, b) =>
             {
               posts.slice(0, 20).map((post) => (
                 <li>
-                  <a href={`${import.meta.env.BASE_URL}/blog/${post.id}`}>
+                  <a href={PATHS.posts.post(post.id)}>
                     {post.data.title}
                   </a>
                 </li>

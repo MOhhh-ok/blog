@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import * as R from "remeda";
+import BaseHead from "../../components/BaseHead.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+
+const posts = await getCollection("blog");
+let categories = posts.flatMap(p => p.data.categories);
+categories = R.unique(categories);
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <h1>Categories</h1>
+    <ul>
+      {categories.map(category => <li>{category}</li>)}
+    </ul>
+  </body>
+</html>
