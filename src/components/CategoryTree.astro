@@ -1,0 +1,38 @@
+---
+import type { CategoryTreeItem } from "@/categories";
+import { PATHS } from "@/paths";
+interface Props {
+  categories: CategoryTreeItem[];
+}
+const { categories } = Astro.props;
+---
+
+<ul class="[&_ul]:pl-[1.5em]">
+  {
+    categories.map(c1 => (
+      <li class="text-[1.2rem]">
+        <a href={PATHS.categories.category(c1.category)}>{c1.category}</a>
+        <ul>
+          {
+            c1.children?.map(c2 => (
+              <li class="text-[1.2rem]">
+                <a href={PATHS.categories.category(c2.category)}>{
+                  c2.category
+                }</a>
+                <ul>
+                  {
+                    c2.children?.map(c3 => (
+                      <a href={PATHS.categories.category(c3.category)}>
+                        <li class="text-[1.1rem]">{c3.category}</li>
+                      </a>
+                    ))
+                  }
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </li>
+    ))
+  }
+</ul>

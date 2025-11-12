@@ -1,7 +1,12 @@
 ---
-import type { Category } from "@/categories";
+import {
+  type Category,
+  filterPostsByCategory,
+  flatCategoryTreeItems,
+} from "@/categories";
+import { CATEGORIES_TREE } from "@/categories";
+import CategoryChip from "@/components/CategoryChip.astro";
 import { getCollection } from "astro:content";
-import * as R from "remeda";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
@@ -10,16 +15,15 @@ import { PATHS } from "../../paths";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  let categories = posts.flatMap(p => p.data.categories);
-  categories = R.unique(categories);
+  const categories = flatCategoryTreeItems(CATEGORIES_TREE).map(c =>
+    c.category
+  );
 
   return categories.map(category => ({
     params: { category },
     props: {
       category,
-      posts: posts.filter(p =>
-        p.data.categories?.includes(category as Category)
-      ),
+      posts: filterPostsByCategory(posts, category),
     },
   }));
 }
@@ -45,9 +49,10 @@ const sortedPosts = posts.sort((a, b) =>
       <ul>
         {
           sortedPosts.map(post => (
-            <li>
+            <li class="mb-2">
               <a href={PATHS.posts.post(post.id)}>{post.data.title}</a>
-              <span style={{ marginLeft: "1rem", color: "#666" }}>
+              {post.data.categories?.map(c => <CategoryChip category={c} />)}
+              <span class="ml-4 text-[#666]">
                 {
                   new Date(post.data.pubDate).toLocaleDateString(
                     "ja-JP",

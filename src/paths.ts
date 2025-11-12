@@ -4,4 +4,8 @@ export const PATHS = {
     index: `${BASE}/posts`,
     post: (id: string) => `${BASE}/posts/${id}`,
   },
+  categories: {
+    index: `${BASE}/categories`,
+    category: (id: string) => `${BASE}/categories/${id}`,
+  },
 } as const;

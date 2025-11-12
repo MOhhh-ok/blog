@@ -1,0 +1,20 @@
+---
+import type { Category } from "@/categories";
+import { PATHS } from "@/paths";
+
+export type Props = {
+  category: Category;
+};
+
+const { category } = Astro.props;
+---
+
+<a
+  href={PATHS.categories.category(category)}
+  class="bg-amber-700 text-sm rounded-2xl py-1 px-2"
+>
+  {category}</a>
+
+<style>
+a{color:white !important}
+</style>
