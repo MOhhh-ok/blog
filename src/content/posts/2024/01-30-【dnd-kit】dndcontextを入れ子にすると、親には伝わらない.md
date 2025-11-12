@@ -1,7 +1,7 @@
 ---
 title: "【dnd-kit】DndContextを入れ子にすると、親には伝わらない"
 pubDate: 2024-01-30
-categories: ["dnd kit"]
+categories: ["React"]
 tags: []
 ---
 

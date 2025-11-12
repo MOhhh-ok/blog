@@ -1,7 +1,7 @@
 ---
 title: "【Apollo】useMutation後、自動でデータ更新する"
 pubDate: 2024-11-28
-categories: ["Apollo"]
+categories: ["React"]
 tags: []
 ---
 

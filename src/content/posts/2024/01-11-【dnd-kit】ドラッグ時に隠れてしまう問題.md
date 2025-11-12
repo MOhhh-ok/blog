@@ -1,7 +1,7 @@
 ---
 title: "【dnd kit】ドラッグ時に隠れてしまう問題"
 pubDate: 2024-01-11
-categories: ["dnd kit"]
+categories: ["React"]
 tags: []
 ---
 

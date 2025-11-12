@@ -1,7 +1,7 @@
 ---
 title: "【dnd kit】MUIとの組み合わせでドラッグできない問題"
 pubDate: 2024-01-11
-categories: ["dnd kit"]
+categories: ["React"]
 tags: []
 ---
 

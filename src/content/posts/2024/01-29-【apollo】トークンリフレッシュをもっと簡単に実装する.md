@@ -1,7 +1,7 @@
 ---
 title: "【Apollo】トークンリフレッシュをもっと簡単に実装する"
 pubDate: 2024-01-29
-categories: ["Apollo"]
+categories: ["React"]
 tags: []
 ---
 
