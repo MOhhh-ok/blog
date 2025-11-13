@@ -1,5 +1,5 @@
 {
-  "name": "hello-dagger",
+  "name": "blog",
   "engineVersion": "v0.19.6",
   "sdk": {
     "source": "typescript"

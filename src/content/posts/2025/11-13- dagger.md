@@ -37,7 +37,7 @@ https://docs.dagger.io
 import { argument, dag, Directory, func, object } from "@dagger.io/dagger";
 
 @object()
-export class Deployer {
+export class Blog {
   /**
    * Build Astro site and return dist directory
    */
