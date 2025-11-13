@@ -1,5 +1,6 @@
 ---
 title: 【Dagger】TypeScriptでCI/CDを書いてみた
+pubDate: 2025-11-13
 categories: ['開発']
 ---
 
