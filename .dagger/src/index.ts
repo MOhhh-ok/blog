@@ -1,7 +1,7 @@
 import { argument, dag, Directory, func, object } from "@dagger.io/dagger";
 
 @object()
-export class HelloDagger {
+export class Deployer {
   /**
    * Build Astro site and return dist directory
    */
