@@ -36,7 +36,7 @@ dagger.jsonが以下のようになっていました。
 
 ```json
 {
-  "name": "billionclips",
+  "name": "xxx",
   "engineVersion": "v0.19.6",
   "sdk": {
     "source": "typescript"
