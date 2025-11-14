@@ -90,9 +90,6 @@ a:hover {
 p {
 	margin-bottom: 1em;
 }
-.prose p {
-	margin-bottom: 2em;
-}
 textarea {
 	width: 100%;
 	font-size: 1rem;
@@ -116,6 +113,7 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	margin-bottom:1rem;
 }
 pre > code {
 	all: unset;
@@ -134,7 +132,9 @@ hr {
 ul{
     list-style:disc;
     padding-left:2em;
-    margin-bottom:1em;
+}
+ul p{
+    margin-bottom:0;
 }
 @media (max-width: 720px) {
 	body {
