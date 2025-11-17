@@ -1,5 +1,5 @@
 ---
-title: 【Dagger】PNPM Workspaceでの課題と対応
+title: 【Dagger】PNPM Workspaceでのディレクトリ問題と対応
 pubDate: 2025-11-15
 categories: ['開発']
 ---
