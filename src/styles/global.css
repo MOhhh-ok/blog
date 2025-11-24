@@ -132,6 +132,10 @@ hr {
 ul{
     list-style:disc;
     padding-left:2em;
+    margin-bottom:1rem;
+}
+ul ul{
+    margin-bottom:0;
 }
 ul p{
     margin-bottom:0;
