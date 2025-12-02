@@ -5,8 +5,6 @@ categories: ['開発']
 tags: []
 ---
 
-# WrodPressからAstroに乗り換えた話
-
 こんにちは、フリーランスエンジニアの太田雅昭です。
 
 ## WordPressからの脱却

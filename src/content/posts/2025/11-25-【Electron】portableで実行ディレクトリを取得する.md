@@ -6,7 +6,7 @@ categories: ["Electron"]
 
 こんにちは、フリーランスエンジニアの太田雅昭です。
 
-# Electronのportableビルド
+## Electronのportableビルド
 
 Electronではportableビルドができます。主な違いは以下のようなモノです。
 
@@ -39,7 +39,7 @@ const config: Configuration = {
 export default config;
 ```
 
-# パスの問題
+## パスの問題
 
 portableでビルドした場合、例えばexeの場所を取得しようとすると一時ディレクトリの場所が返ってきます。
 
@@ -49,7 +49,7 @@ app.getPath('exe') // C:\Users\xxx\AppData\Local\Temp\yyy
 
 このためデータ保存などは工夫が必要となります。
 
-# 環境変数を参照する
+## 環境変数を参照する
 
 環境変数に、配布ファイル場所が格納されています。
 

@@ -9,8 +9,6 @@ techs: ["React", "Laravel", "さくらレンタルサーバー"]
 
 ![image](./edit-signage.png)
 
-# 主な機能
-
 ## コンテンツ管理システム
 
 - ポスター用の画像コンテンツ管理

@@ -7,7 +7,7 @@ techs: ["Laravel","React", "XServer"]
 
 Claude APIを利用した、LP自動生成ツールのPoCを作成。
 
-# 特徴
+## 特徴
 
 - ユーザー入力をプロンプト化し、Claude APIに送信
 - 処理中画面から、ポーリングで取得状況の表示と自動遷移

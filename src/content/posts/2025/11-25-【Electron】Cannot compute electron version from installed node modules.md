@@ -8,7 +8,7 @@ categories: ["Electron"]
 
 Yarn WorkspaceモノレポでElectronビルド時にエラーが出たので、その解決方法について紹介します。
 
-# 環境
+## 環境
 
 Yarn Workspaceのモノレポ構成で以下のバージョンを使用していました。
 
@@ -17,7 +17,7 @@ Yarn Workspaceのモノレポ構成で以下のバージョンを使用してい
 - electron-builder: 26.1.0
 - electron-vite: ^4.0.1
 
-# エラー内容
+## エラー内容
 
 `electron-builder`でElectronアプリケーションをビルドしようとしたところ、下記のエラーが発生しました。
 
@@ -28,7 +28,7 @@ See https://github.com/electron-userland/electron-builder/issues/3984#issuecomme
 
 エラーメッセージから、electron-builderがnode_modulesからElectronのバージョンを判定できていないことが分かります。
 
-# 原因
+## 原因
 
 明確な原因は特定できませんでしたが、以下の要因が考えられます:
 
@@ -36,7 +36,7 @@ See https://github.com/electron-userland/electron-builder/issues/3984#issuecomme
 
 2. **セマンティックバージョニング(`^`)の使用**: package.jsonで`^38.2.2`のように指定していたことから、前述の原因と相まって、electron-builderが「固定されたバージョン」として認識できなかった可能性があります。
 
-# 解決方法
+## 解決方法
 
 以下の2つの対応で解決しました。
 

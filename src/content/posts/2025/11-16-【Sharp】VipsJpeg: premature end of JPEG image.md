@@ -6,11 +6,11 @@ categories: ['Node.js']
 
 こんにちは、フリーランスエンジニアの太田雅昭です。
 
-# 環境
+## 環境
 
 sharp: ^0.34.5
 
-# エラー
+## エラー
 
 sharpでjpegを処理する際にエラーになりました。
 
@@ -20,7 +20,7 @@ Error: VipsJpeg: premature end of JPEG image at Sharp.toBuffer
 
 これは困った。
 
-# 原因と対処
+## 原因と対処
 
 他のJpegファイルは読み込めることから、対象のJpegが破損していたようです。ただしMac Finderのプレビューは表示されてましたので、読み込む方法はあると。
 
