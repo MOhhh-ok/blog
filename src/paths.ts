@@ -8,4 +8,8 @@ export const PATHS = {
     index: `${BASE}/categories`,
     category: (id: string) => `${BASE}/categories/${id}`,
   },
+  works: {
+    index: `${BASE}/works`,
+    work: (id: string) => `${BASE}/works/${id}`,
+  },
 } as const;

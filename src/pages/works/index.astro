@@ -1,0 +1,83 @@
+---
+import { getCollection } from "astro:content";
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import { PATHS } from "../../paths";
+
+// worksコレクションから全データを取得し、開始日の降順でソート
+const works = (await getCollection("works")).sort(
+  (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf(),
+);
+
+// 日付フォーマット用の関数
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+  }).format(date);
+};
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <BaseHead
+      title={`Works - ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header />
+    <main class="w-[800px] mx-auto px-4">
+      <h1>Works</h1>
+      <section class="space-y-8">
+        {
+          works.map((work) => (
+            <article class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <div class="flex justify-between items-start mb-3">
+                <h2 class="text-2xl font-semibold mt-0">
+                  <a href={PATHS.works.work(work.id)}>
+                    {work.data.title}
+                  </a>
+                </h2>
+                <time class="text-sm text-gray-500 whitespace-nowrap ml-4">
+                  {formatDate(work.data.startDate)}
+                  {
+                    work.data.endDate
+                      && ` - ${formatDate(work.data.endDate)}`
+                  }
+                </time>
+              </div>
+
+              {
+                work.data.description && (
+                  <p class="text-gray-700 mb-4">{work.data.description}</p>
+                )
+              }
+
+              {
+                work.data.techs && work.data.techs.length > 0
+                  && (
+                  <div class="flex flex-wrap gap-2">
+                    {
+                      work.data.techs.map((tech) => (
+                        <span
+                          class="px-3 py-1 border-black text-sm rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))
+                    }
+                  </div>
+                )
+              }
+            </article>
+          ))
+        }
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
