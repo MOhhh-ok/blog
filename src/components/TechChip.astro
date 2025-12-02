@@ -1,0 +1,13 @@
+---
+import type { Category } from "@/categories";
+import { PATHS } from "@/paths";
+
+export type Props = {
+  tech: string;
+};
+
+const { tech } = Astro.props;
+---
+
+<span class="text-sm bg-gray-50 rounded-xl py-1 px-2 border border-gray-500">
+  {tech}</span>
