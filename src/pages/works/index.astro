@@ -6,19 +6,27 @@ import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import { PATHS } from "../../paths";
+import {combineDates } from "../../utils";
 
 // worksコレクションから全データを取得し、開始日の降順でソート
 const works = (await getCollection("works")).sort(
-  (a, b) => b.data.startDate.valueOf() - a.data.startDate.valueOf(),
-);
+  (a, b) => {
+    // 比較用の年を取得（aboutYear > startDateの年 > 0）
+    const aYear = a.data.aboutYear
+      ?? (a.data.startDate ? a.data.startDate.getFullYear() : 0);
+    const bYear = b.data.aboutYear
+      ?? (b.data.startDate ? b.data.startDate.getFullYear() : 0);
 
-// 日付フォーマット用の関数
-const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat("ja-JP", {
-    year: "numeric",
-    month: "2-digit",
-  }).format(date);
-};
+    if (bYear !== aYear) {
+      return bYear - aYear;
+    }
+    // 年が同じ場合、startDateがあれば月まで考慮
+    if (a.data.startDate && b.data.startDate) {
+      return b.data.startDate.valueOf() - a.data.startDate.valueOf();
+    }
+    return 0;
+  },
+);
 ---
 
 <!DOCTYPE html>
@@ -36,7 +44,10 @@ const formatDate = (date: Date) => {
       <h1>Works</h1>
       <section class="space-y-8">
         {
-          works.map((work) => (
+          works.map((work) => {
+            const { data } = work;
+            const { startDate, endDate, aboutYear } = data;
+            return (
             <article class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div class="flex justify-between items-start mb-3">
                 <h2 class="text-xl font-semibold mt-0 mb-4">
@@ -45,11 +56,7 @@ const formatDate = (date: Date) => {
                   </a>
                 </h2>
                 <time class="text-sm text-gray-500 whitespace-nowrap ml-4">
-                  {formatDate(work.data.startDate)}
-                  {
-                    work.data.endDate
-                      && ` - ${formatDate(work.data.endDate)}`
-                  }
+                  {combineDates({startDate, endDate, aboutYear})}
                 </time>
               </div>
 
@@ -68,7 +75,8 @@ const formatDate = (date: Date) => {
                 )
               }
             </article>
-          ))
+          );
+          })
         }
       </section>
     </main>

@@ -5,6 +5,7 @@ import { type CollectionEntry, getCollection, render } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
+import { combineDates } from "../../utils";
 
 export async function getStaticPaths() {
   const works = await getCollection("works");
@@ -18,14 +19,6 @@ type Props = CollectionEntry<"works">;
 
 const work = Astro.props;
 const { Content } = await render(work);
-
-// 日付フォーマット用の関数
-const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat("ja-JP", {
-    year: "numeric",
-    month: "long",
-  }).format(date);
-};
 ---
 
 <!DOCTYPE html>
@@ -93,10 +86,12 @@ const formatDate = (date: Date) => {
         <div class="prose">
           <div class="title">
             <div class="date">
-              {formatDate(work.data.startDate)}
               {
-                work.data.endDate
-                  && ` - ${formatDate(work.data.endDate)}`
+                combineDates({
+                  startDate: work.data.startDate,
+                  endDate: work.data.endDate,
+                  aboutYear: work.data.aboutYear,
+                })
               }
             </div>
             <h1>{work.data.title}</h1>
