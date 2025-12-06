@@ -59,7 +59,7 @@
     h4,
     h5,
     h6 {
-    	margin: 1em 0 0.8em 0;
+       	margin: 1.2em 0 1em 0;
     	color: rgb(var(--black));
     	line-height: 1.2;
     }
@@ -68,6 +68,8 @@
     }
     h2 {
     	font-size: 1.5rem;
+        padding-bottom: 0.1em;
+        border-bottom: 1px solid #aaa;
     }
     h3 {
     	font-size: 1.2rem;
