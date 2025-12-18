@@ -1,15 +1,16 @@
 const BASE = import.meta.env.BASE_URL;
 export const PATHS = {
+  home: `${BASE}`,
   posts: {
-    index: `${BASE}/posts`,
-    post: (id: string) => `${BASE}/posts/${id}`,
+    index: `${BASE}posts/`,
+    post: (id: string) => `${BASE}posts/${id}/`,
   },
   categories: {
-    index: `${BASE}/categories`,
-    category: (id: string) => `${BASE}/categories/${id}`,
+    index: `${BASE}categories/`,
+    category: (id: string) => `${BASE}categories/${id}/`,
   },
   works: {
-    index: `${BASE}/works`,
-    work: (id: string) => `${BASE}/works/${id}`,
+    index: `${BASE}works/`,
+    work: (id: string) => `${BASE}works/${id}/`,
   },
 } as const;

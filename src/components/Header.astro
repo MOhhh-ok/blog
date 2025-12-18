@@ -1,15 +1,16 @@
 ---
+import { PATHS } from "@/paths";
 import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
 ---
 
 <header>
   <nav>
-    <h2><a href={`${import.meta.env.BASE_URL}/`}>{SITE_TITLE}</a></h2>
+    <h2><a href={PATHS.home}>{SITE_TITLE}</a></h2>
     <div class="internal-links">
-      <HeaderLink href={`${import.meta.env.BASE_URL}/`}>Home</HeaderLink>
-      <HeaderLink href={`${import.meta.env.BASE_URL}/posts`}>Posts</HeaderLink>
-      <HeaderLink href={`${import.meta.env.BASE_URL}/works`}>Works</HeaderLink>
+      <HeaderLink href={PATHS.home}>Home</HeaderLink>
+      <HeaderLink href={PATHS.posts.index}>Posts</HeaderLink>
+      <HeaderLink href={PATHS.works.index}>Works</HeaderLink>
       <!-- <HeaderLink href="/about">About</HeaderLink> -->
     </div>
     <div class="social-links">

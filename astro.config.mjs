@@ -11,6 +11,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://mohhh-ok.github.io",
   base: "/blog",
+  trailingSlash: "always",
   integrations: [mdx(), sitemap(), pagefind()],
 
   markdown: {
