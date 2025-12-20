@@ -21,10 +21,10 @@ AgGridでは、テーブルを直接編集する機能があります。ただ�
 
 編集を検知するには、valueSetterやonCellValueChangedなどがあります。以下のような特徴があります。
 
-- valueSetter: セルに反映させる。おそらく同期処理限定
+- valueSetter: セルに反映させる。同期処理限定
 - onCellValueChanged: 編集後イベント
 
-AgGridは内部で編集内容を保持しますが、onCellValueChangedでは編集内容を直接変えることはできません。直接値を変えるには、valueSetterで行う必要があります。
+AgGridは内部で編集内容を保持しますが、onCellValueChangedでは編集内容を直接変えることはできません。直接値を変えるには、valueSetterで同期的に行う必要があります。
 
 ## 数値型の場合は日本語入力が破棄される
 
