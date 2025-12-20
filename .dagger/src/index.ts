@@ -9,19 +9,17 @@ export class Blog {
   async build(
     @argument({ defaultPath: "/" }) source: Directory,
   ): Promise<Directory> {
-    const pnpmCache = dag.cacheVolume("pnpm");
+    const bunCache = dag.cacheVolume("bun");
 
     return dag
       .container()
-      .from("node:21-slim")
-      .withExec(["corepack", "enable"])
-      .withExec(["corepack", "prepare", "pnpm@latest", "--activate"])
+      .from("oven/bun:latest")
       .withDirectory("/app", source)
-      .withMountedCache("/root/.local/share/pnpm/store", pnpmCache)
+      .withMountedCache("/root/.bun/install/cache", bunCache)
       .withWorkdir("/app")
       .withEnvVariable("CI", "true")
-      .withExec(["pnpm", "install"])
-      .withExec(["pnpm", "run", "build"])
+      .withExec(["bun", "install"])
+      .withExec(["bun", "run", "build"])
       .directory("/app/dist");
   }
 }
