@@ -1,10 +1,10 @@
 ---
 title: "【AgGrid】数値フィールドのIME日本語入力対策【React】"
 pubDate: 2025-05-22
-updatedDate: 2025-12-20
+# updatedDate: 2025-12-20
 categories: ["React"]
 ---
-
+<!--
 こんにちは、フリーランスエンジニアの太田雅昭です。
 
 ## 背景
@@ -133,4 +133,4 @@ function toHalfWidthNumber(str: string | number): string {
     return FULL_WIDTH_TO_HALF_WIDTH_NUMBER[char] ?? char;
   });
 }
-````
+````-->
