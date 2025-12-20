@@ -1,10 +1,10 @@
 ---
 title: "【AgGrid】数値フィールドのIME日本語入力対策【React】"
 pubDate: 2025-05-22
-# updatedDate: 2025-12-20
+updatedDate: 2025-12-20
 categories: ["React"]
 ---
-<!--
+
 こんにちは、フリーランスエンジニアの太田雅昭です。
 
 ## 背景
@@ -21,10 +21,10 @@ AgGridでは、テーブルを直接編集する機能があります。ただ�
 
 編集を検知するには、valueSetterやonCellValueChangedなどがあります。以下のような特徴があります。
 
-- valueSetter: 編集内容に反映される
-- onCellValueChanged: 編集内容に反映されない
+- valueSetter: セルに反映させる。おそらく同期処理限定
+- onCellValueChanged: 編集後イベント
 
-AgGridは内部で編集内容を保持しますが、これはonCellValueChangedの前に行われるようです。そのためか、onCellValueChangedでは編集内容を直接変えることはできません。直接値を変えるには、valueSetterで行う必要があります。
+AgGridは内部で編集内容を保持しますが、onCellValueChangedでは編集内容を直接変えることはできません。直接値を変えるには、valueSetterで行う必要があります。
 
 ## 数値型の場合は日本語入力が破棄される
 
@@ -57,13 +57,36 @@ valueSetter: (params) => {
 最終的に、今回のお話は下記のようなコードとなります。
 
 ```tsx
-import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import {
+  AllCommunityModule,
+  type CellValueChangedEvent,
+  ModuleRegistry,
+  type ValueSetterFunc,
+  type ValueSetterParams,
+} from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 
 // Register all Community features
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export default function App() {
+  // セル更新関数
+  const valueSetter = ({ colDef, data, newValue }: ValueSetterParams) => {
+    console.log("valueSetter", newValue);
+    const field = colDef.field;
+    if (!field) return false;
+    data[field] = toHalfWidthNumber(newValue);
+    return true;
+  };
+
+  // API用関数
+  const onCellValueChanged = ({ newValue }: ValueSetterParams) => {
+    console.log("onCellValueChanged", newValue);
+    const hanValue = toHalfWidthNumber(newValue);
+    // API処理をここに書く
+    console.log("API処理", hanValue);
+  };
+
   return (
     <div style={{ height: 400, width: 600 }}>
       <AgGridReact
@@ -74,34 +97,20 @@ export default function App() {
         // 列定義
         columnDefs={[
           // numberタイプ
+          // IMEオンの場合newValeuがnullになるので使えない
           {
             field: "numColumn",
             editable: true,
-            valueSetter: (params) => {
-              // IMEオンでnewValeuがnullになるので使えない
-              console.log("numColumn", params.newValue);
-              return false;
-            },
-            onCellValueChanged: ({ oldValue, newValue }) => {
-              console.log({ oldValue, newValue });
-            },
+            valueSetter,
+            onCellValueChanged,
           },
           // 文字列タイプ
+          // IMEオンorオフに従ってnewValueがstring or numberになる
           {
             field: "strColumn",
             editable: true,
-            valueSetter: (params) => {
-              // IMEオンorオフに従って、文字列or数値で入ってくる
-              console.log("strColumn", params.newValue);
-              const field = params.colDef.field;
-              if (!field) return false;
-              // 全角数値を半角に変換
-              params.data[field] = toHalfWidthNumber(params.newValue);
-              return true;
-            },
-            onCellValueChanged: ({ oldValue, newValue }) => {
-              console.log({ oldValue, newValue });
-            },
+            valueSetter,
+            onCellValueChanged,
           },
         ] as const}
       />
@@ -133,4 +142,4 @@ function toHalfWidthNumber(str: string | number): string {
     return FULL_WIDTH_TO_HALF_WIDTH_NUMBER[char] ?? char;
   });
 }
-````-->
+````
