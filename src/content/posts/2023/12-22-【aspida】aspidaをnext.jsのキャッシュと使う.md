@@ -1,7 +1,7 @@
 ---
 title: "【aspida】aspidaをNext.jsのキャッシュと使う"
 pubDate: 2023-12-22
-categories: ["aspida"]
+categories: ["Node.js"]
 tags: []
 ---
 

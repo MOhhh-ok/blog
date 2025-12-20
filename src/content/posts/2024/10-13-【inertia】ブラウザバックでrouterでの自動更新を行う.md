@@ -1,7 +1,7 @@
 ---
 title: "【Inertia】ブラウザバックでrouterでの自動更新を行う"
 pubDate: 2024-10-13
-categories: ["Inertia"]
+categories: ["Laravel"]
 tags: []
 ---
 

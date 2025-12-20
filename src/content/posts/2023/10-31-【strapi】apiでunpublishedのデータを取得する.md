@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】APIでUnpublishedのデータを取得する"
 pubDate: 2023-10-31
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

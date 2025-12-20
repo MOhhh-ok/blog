@@ -1,7 +1,7 @@
 ---
 title: "Illuminate Database古いバージョンでsave()時に値が変わる問題"
 pubDate: 2023-10-12
-categories: ["Illuminate Database"]
+categories: ["Laravel"]
 tags: []
 ---
 

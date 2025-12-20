@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】API応答のattributesを再帰的に平滑化する"
 pubDate: 2023-10-20
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

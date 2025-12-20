@@ -1,7 +1,7 @@
 ---
 title: "【Laravel】InertiaとAPIとを共存させる"
 pubDate: 2024-10-09
-categories: ["Inertia"]
+categories: ["Laravel"]
 tags: []
 ---
 

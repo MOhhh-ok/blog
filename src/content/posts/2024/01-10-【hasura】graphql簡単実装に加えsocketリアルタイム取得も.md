@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】GraphQL簡単実装に加えsocketリアルタイム取得も"
 pubDate: 2024-01-10
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

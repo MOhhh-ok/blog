@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】Content-Type作成後にTypeScriptのエラーで起動できなくなる問題"
 pubDate: 2023-11-18
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

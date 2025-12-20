@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】Componentを含めてデータを登録する【カスタムAPI】"
 pubDate: 2023-10-20
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

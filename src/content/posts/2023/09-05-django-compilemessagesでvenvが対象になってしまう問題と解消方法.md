@@ -1,7 +1,7 @@
 ---
 title: "Django compilemessagesでvenvが対象になってしまう問題と解消方法"
 pubDate: 2023-09-05
-categories: ["Django"]
+categories: ["Python"]
 tags: []
 ---
 

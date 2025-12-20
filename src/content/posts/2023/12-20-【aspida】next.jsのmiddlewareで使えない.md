@@ -1,7 +1,7 @@
 ---
 title: "【aspida】Next.jsのmiddlewareで使えない"
 pubDate: 2023-12-20
-categories: ["aspida"]
+categories: ["Node.js"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】TypeScriptでDB操作時のContent Type入力を楽にする"
 pubDate: 2023-10-22
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

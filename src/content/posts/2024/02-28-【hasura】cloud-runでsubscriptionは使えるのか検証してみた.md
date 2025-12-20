@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】Cloud RunでSubscriptionは使えるのか検証してみた"
 pubDate: 2024-02-28
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

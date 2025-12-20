@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】CloudBuildでMetadataを反映させてみた"
 pubDate: 2024-02-19
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

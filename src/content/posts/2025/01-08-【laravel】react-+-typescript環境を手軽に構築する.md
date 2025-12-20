@@ -1,7 +1,7 @@
 ---
 title: "【Laravel】React + TypeScript環境を手軽に構築する"
 pubDate: 2025-01-08
-categories: ["Inertia", "Laravel"]
+categories: ["Laravel"]
 tags: []
 ---
 

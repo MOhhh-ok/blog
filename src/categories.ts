@@ -9,22 +9,18 @@ export type CategoryTreeItem = {
 
 export const CATEGORIES = [
   "未分類",
-  "GPT",
   "Google",
   "Google Cloud",
   "エディタ",
   "Docker",
   "Python",
   "GAS",
-  "Illuminate Database",
-  "Django",
   "WordPress",
   "AI",
   "PHP",
   "Next.js",
   "TypeScript",
   "Node.js",
-  "Strapi",
   "MUI",
   "React",
   "Bookmarklet",
@@ -32,12 +28,9 @@ export const CATEGORIES = [
   "CSS",
   "NestJS",
   "Prisma",
-  "aspida",
-  "Hasura",
   "Git",
   "Database",
   "Laravel",
-  "Inertia",
   "Mac",
   "Shell",
   "Electron",
@@ -49,7 +42,6 @@ export const CATEGORIES = [
   "Drizzle",
   "Tauri",
   "開発",
-  "Dart",
 ] as const;
 
 export const CATEGORIES_TREE: CategoryTreeItem[] = [
@@ -61,9 +53,7 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
         children: [
           { category: "NestJS" },
           { category: "Prisma" },
-          { category: "aspida" },
           { category: "Drizzle" },
-          { category: "Strapi" },
         ],
       },
       {
@@ -100,9 +90,7 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
   },
   {
     category: "AI",
-    children: [
-      { category: "GPT" },
-    ],
+    children: [],
   },
   { category: "C2PA", children: [] },
   {
@@ -110,25 +98,18 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
     children: [
       {
         category: "Laravel",
-        children: [
-          { category: "Inertia" },
-          { category: "Illuminate Database" },
-        ],
+        children: [],
       },
       { category: "WordPress" },
     ],
   },
   {
     category: "Python",
-    children: [
-      { category: "Django" },
-    ],
+    children: [],
   },
   {
-    category: "Dart",
-    children: [
-      { category: "Flutter" },
-    ],
+    category: "Flutter",
+    children: [],
   },
   {
     category: "HTML",
@@ -138,9 +119,7 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
   },
   {
     category: "Database",
-    children: [
-      { category: "Hasura", children: [] },
-    ],
+    children: [],
   },
   { category: "未分類", children: [] },
 ];

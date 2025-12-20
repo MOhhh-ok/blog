@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】原因不明なエラー。例えばinvalid input syntax for type integer"
 pubDate: 2024-02-20
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

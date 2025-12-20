@@ -1,8 +1,7 @@
 ---
 title: "ChatGPTでLINEオカマバー開設しました"
 pubDate: 2023-03-19
-categories: ["GPT"]
-tags: ["AI", "GPT", "LINE"]
+categories: ["AI"]
 ---
 
 こんにちは、フリーランス太田雅昭です。

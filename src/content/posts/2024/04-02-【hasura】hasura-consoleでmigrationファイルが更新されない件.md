@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】hasura consoleでmigrationファイルが更新されない件"
 pubDate: 2024-04-02
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

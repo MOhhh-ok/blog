@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】Error creating endpoint xxx xxx Cannot read properties of undefined (reading xxx)"
 pubDate: 2023-10-20
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

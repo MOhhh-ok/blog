@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】queryで階層的にwhereを指定する"
 pubDate: 2023-10-30
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

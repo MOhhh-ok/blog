@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】Componentを含めた検索をする"
 pubDate: 2023-10-21
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

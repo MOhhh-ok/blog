@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】Apollo+ReactでRoleを変更する"
 pubDate: 2024-06-01
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

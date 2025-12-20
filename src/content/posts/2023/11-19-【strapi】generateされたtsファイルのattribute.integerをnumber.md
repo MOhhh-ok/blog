@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】generateされたtsファイルのAttribute.Integerをnumberに変換する"
 pubDate: 2023-11-19
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

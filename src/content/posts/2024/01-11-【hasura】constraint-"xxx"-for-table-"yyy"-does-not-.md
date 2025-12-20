@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】constraint \"xxx\" for table \"yyy\" does not exist"
 pubDate: 2024-01-11
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】REST APIでリレーションがnullのレコードを取得する"
 pubDate: 2023-11-22
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

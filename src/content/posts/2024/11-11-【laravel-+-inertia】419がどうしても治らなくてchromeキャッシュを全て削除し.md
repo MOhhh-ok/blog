@@ -1,7 +1,7 @@
 ---
 title: "【Laravel + Inertia】419がどうしても治らなくてChromeキャッシュを全て削除した話"
 pubDate: 2024-11-11
-categories: ["Inertia"]
+categories: ["Laravel"]
 tags: []
 ---
 

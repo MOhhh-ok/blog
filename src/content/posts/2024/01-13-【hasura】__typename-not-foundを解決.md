@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】__typename not foundを解決"
 pubDate: 2024-01-13
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】generated後のd.tsファイルをライブラリに再利用する"
 pubDate: 2023-11-19
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

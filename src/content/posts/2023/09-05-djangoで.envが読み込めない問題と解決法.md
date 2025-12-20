@@ -1,7 +1,7 @@
 ---
 title: "Djangoで.envが読み込めない問題と解決法"
 pubDate: 2023-09-05
-categories: ["Django"]
+categories: ["Python"]
 tags: []
 ---
 

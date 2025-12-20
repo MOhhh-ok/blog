@@ -1,7 +1,7 @@
 ---
 title: "【Strapi】SwaggerのテストURLを変更する"
 pubDate: 2023-10-19
-categories: ["Strapi"]
+categories: ["Node.js"]
 tags: []
 ---
 

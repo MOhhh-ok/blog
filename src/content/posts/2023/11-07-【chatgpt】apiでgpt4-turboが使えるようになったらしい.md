@@ -1,7 +1,7 @@
 ---
 title: "【ChatGPT】APIでGPT4-turboが使えるようになったらしい"
 pubDate: 2023-11-07
-categories: ["GPT"]
+categories: ["AI"]
 tags: []
 ---
 

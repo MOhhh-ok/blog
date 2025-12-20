@@ -1,7 +1,7 @@
 ---
 title: "【Hasura】導入に際して気をつけること。DB設計など"
 pubDate: 2024-03-24
-categories: ["Hasura"]
+categories: ["Database"]
 tags: []
 ---
 

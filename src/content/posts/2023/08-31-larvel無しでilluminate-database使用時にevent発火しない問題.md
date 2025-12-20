@@ -1,7 +1,7 @@
 ---
 title: "Larvel無しでIlluminate Database使用時にEvent発火しない問題"
 pubDate: 2023-08-31
-categories: ["Illuminate Database"]
+categories: ["Laravel"]
 tags: []
 ---
 
