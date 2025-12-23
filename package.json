@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "preinstall": "npx only-allow bun",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -28,6 +29,7 @@
     "@types/node": "^24.10.1",
     "@types/turndown": "^5.0.6",
     "fast-xml-parser": "^5.3.2",
+    "only-allow": "^1.2.2",
     "tsx": "^4.21.0",
     "turndown": "^7.2.2"
   }
