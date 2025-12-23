@@ -13,22 +13,22 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
-    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.4",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.6",
     "astro-pagefind": "^1.8.5",
     "dayjs": "^1.11.19",
     "remeda": "^2.32.0",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.4",
     "@types/turndown": "^5.0.6",
-    "fast-xml-parser": "^5.3.2",
+    "fast-xml-parser": "^5.3.3",
     "only-allow": "^1.2.2",
     "tsx": "^4.21.0",
     "turndown": "^7.2.2"
