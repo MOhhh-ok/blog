@@ -1,0 +1,80 @@
+---
+export interface Props {
+  headings: {
+    depth: number;
+    slug: string;
+    text: string;
+  }[];
+}
+
+const { headings } = Astro.props;
+---
+
+{
+  headings.length > 0 && (
+    <nav class="toc">
+      <h2>目次</h2>
+      <ul>
+        {
+          headings.map((heading) => (
+            <li class={`toc-level-${heading.depth}`}>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+.toc {
+  /*background-color: rgb(var(--gray-light));*/
+  border: 1px dotted var(--accent);
+  width:50%;
+  padding: 1.2rem 1.5rem;
+  margin: auto;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.toc h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: rgb(var(--black));
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin: 0.5rem 0;
+}
+
+.toc-level-2 {
+  padding-left: 0;
+}
+
+.toc-level-3 {
+  padding-left: 1rem;
+}
+
+.toc-level-4 {
+  padding-left: 2rem;
+}
+
+.toc a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.toc a:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+</style>
