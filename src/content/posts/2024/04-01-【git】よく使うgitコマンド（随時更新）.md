@@ -1,7 +1,7 @@
 ---
 title: "【Git】よく使うGitコマンド（随時更新）"
 pubDate: 2024-04-01
-categories: ["Git"]
+categories: ["開発"]
 tags: []
 ---
 

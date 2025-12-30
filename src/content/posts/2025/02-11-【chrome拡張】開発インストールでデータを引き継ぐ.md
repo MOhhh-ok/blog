@@ -1,7 +1,7 @@
 ---
 title: "【Chrome拡張】開発インストールでデータを引き継ぐ"
 pubDate: 2025-02-11
-categories: ["Chrome拡張"]
+categories: ["TypeScript"]
 tags: []
 ---
 

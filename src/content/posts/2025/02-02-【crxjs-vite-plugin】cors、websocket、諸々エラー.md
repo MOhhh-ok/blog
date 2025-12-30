@@ -1,7 +1,7 @@
 ---
 title: "【crxjs/vite-plugin】CORS、WebSocket、諸々エラー"
 pubDate: 2025-02-02
-categories: ["Chrome拡張"]
+categories: ["TypeScript"]
 tags: []
 ---
 

@@ -23,24 +23,19 @@ export const CATEGORIES = [
   "Node.js",
   "MUI",
   "React",
-  "Bookmarklet",
   "HTML",
   "CSS",
   "NestJS",
   "Prisma",
-  "Git",
   "Database",
   "Laravel",
-  "Mac",
   "Shell",
   "Electron",
   "Flutter",
   "Vite",
-  "Chrome拡張",
   "Linux",
   "C2PA",
   "Drizzle",
-  "Tauri",
   "開発",
 ] as const;
 
@@ -65,9 +60,6 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
       },
       { category: "Vite" },
       { category: "Electron" },
-      { category: "Tauri" },
-      { category: "Chrome拡張" },
-      { category: "Bookmarklet" },
     ],
   },
   {
@@ -80,12 +72,10 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
   {
     category: "開発",
     children: [
-      { category: "Git" },
       { category: "Docker" },
       { category: "エディタ" },
       { category: "Shell", children: [] },
       { category: "Linux", children: [] },
-      { category: "Mac", children: [] },
     ],
   },
   {

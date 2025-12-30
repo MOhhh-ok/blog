@@ -1,7 +1,7 @@
 ---
 title: "【Tauri】ファイルパーミッションが取れない問題"
 pubDate: 2025-06-09
-categories: ["Tauri"]
+categories: ["TypeScript"]
 tags: []
 ---
 

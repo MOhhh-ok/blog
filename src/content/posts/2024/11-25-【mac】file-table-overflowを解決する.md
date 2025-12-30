@@ -1,7 +1,7 @@
 ---
 title: "【Mac】file table overflowを解決する"
 pubDate: 2024-11-25
-categories: ["Mac"]
+categories: ["開発"]
 tags: []
 ---
 
