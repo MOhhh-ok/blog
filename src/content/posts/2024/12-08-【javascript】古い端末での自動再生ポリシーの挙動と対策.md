@@ -2,7 +2,6 @@
 title: "【JavaScript】古い端末での自動再生ポリシーの挙動と対策"
 pubDate: 2024-12-08
 categories: ["TypeScript"]
-tags: []
 ---
 
 こんにちは、フリーランスエンジニアの太田雅昭です。
