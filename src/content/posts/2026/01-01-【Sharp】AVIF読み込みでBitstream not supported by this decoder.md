@@ -1,7 +1,7 @@
 ---
 title: 【Sharp】HDRのAVIF読み込みでBitstream not supported by this decoder
 pubDate: 2026-01-01
-categories: ["TypeScript"]
+categories: ["Node.js"]
 ---
 
 こんにちは、フリーランスエンジニアの太田雅昭です。
