@@ -15,3 +15,4 @@ techs: ["Next.js", "Remotion", "Google Cloud"]
   - テキストのベクトル化および類似度検索
 - お気に入り・デポジット購入・カート
 - ユーザー間のメッセージ
+- AVIFによるHDR対応
