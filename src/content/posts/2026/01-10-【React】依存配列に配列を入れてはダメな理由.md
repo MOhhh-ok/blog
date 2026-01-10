@@ -39,8 +39,8 @@ export default function App() {
   const [dummy, setDummy] = useState(0);
 
   useEffect(() => {
-    setDummy(d => d + 1); // useEffect内で状態更新
-  }, [[1]]); // 依存配列に固定値1を入れている
+    setDummy(d => d + 1);
+  }, [[1]]); // 依存配列に固定配列を入れている
 
   return dummy;
 }
@@ -65,7 +65,7 @@ export default function App() {
   const [dummy, setDummy] = useState(0);
 
   useEffect(() => {
-    setDummy(d => d + 1); // useEffect内で状態更新
+    setDummy(d => d + 1);
   }, [{ a: 1 }]); // 依存配列にオブジェクトを入れている
 
   return dummy;
@@ -137,7 +137,7 @@ export default function App() {
   const arr = [1, 2, 3];
 
   useEffect(() => {
-    console.log("Effect実行");
+    setDummy(d => d + 1);
   }, [arr[0], arr[1], arr[2]]); // 配列の要素を展開
 
   return dummy;
@@ -156,7 +156,7 @@ export default function App() {
   const arr = [1, 2, 3];
 
   useEffect(() => {
-    console.log("Effect実行");
+    setDummy(d => d + 1);
   }, [...arr]); // スプレッド構文で展開
 
   return dummy;
@@ -175,7 +175,7 @@ export default function App() {
   const obj = { a: 1, b: 2 };
 
   useEffect(() => {
-    console.log("Effect実行");
+    setDummy(d => d + 1);
   }, [JSON.stringify(obj)]); // 文字列化して比較
 
   return dummy;
