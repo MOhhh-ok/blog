@@ -1,7 +1,7 @@
 ---
 title: "【CSS】stickyを要素に追従させる"
 pubDate: "2025-11-12"
-categories: ["CSS"]
+categories: ["HTML"]
 ---
 
 

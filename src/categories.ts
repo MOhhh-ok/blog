@@ -24,7 +24,6 @@ export const CATEGORIES = [
   "MUI",
   "React",
   "HTML",
-  "CSS",
   "NestJS",
   "Prisma",
   "Database",
@@ -103,9 +102,7 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
   },
   {
     category: "HTML",
-    children: [
-      { category: "CSS" },
-    ],
+    children: [],
   },
   {
     category: "Database",
