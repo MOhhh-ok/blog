@@ -51,7 +51,7 @@ Version                       3.34.1
 Region                        Japan (jp)                                                                                                  
 Latency                       22ms                                                                                                        
 Web Interface                 http://127.0.0.1:4040                                                                                       
-Forwarding                    https://bellowslike-transportedly-britney.ngrok-free.dev -> http://localhost:80                             
+Forwarding                    https://xxx-yyy-zzz.ngrok-free.dev -> http://localhost:80                             
                                                                                                                                           
 Connections                   ttl     opn     rt1     rt5     p50     p90                                                                 
                               0       0       0.00    0.00    0.00    0.00                                                 
