@@ -1,6 +1,7 @@
 ---
 title: 【CASL】TypeScriptで型安全なフィールドを定義する
 pubDate: 2026-01-01
+updatedDate: 2026-01-17
 categories: ["TypeScript"]
 ---
 
@@ -32,33 +33,33 @@ import {
 } from "@casl/ability";
 
 // ユーザー定義
-type UserRole = "user" | "admin";
+export type UserRole = "user" | "admin";
 type User = { 
   id: string; 
   roles: UserRole[] 
 };
 
 // アクション定義
-const ACTIONS = ["create", "read", "update", "delete", "manage"] as const;
-type Action = (typeof ACTIONS)[number];
+export const ACTIONS = ["create", "read", "update", "delete", "manage"] as const;
+export type Action = (typeof ACTIONS)[number];
 
 // サブジェクト定義
-const SUBJECT_NAMES = ["post", "comment", "all"] as const;
-type SubjectName = (typeof SUBJECT_NAMES)[number];
+export const SUBJECT_NAMES = ["post", "comment", "all"] as const;
+export type SubjectName = (typeof SUBJECT_NAMES)[number];
 
 // フィールド定義（重要：ForcedSubjectを使用）
-type Post = {
+export type PostSubject = {
   authorId: string;
   approved: boolean;
 } & ForcedSubject<"post">;
 
-type Comment = {
+export type CommentSubject = {
   authorId: string;
   content: string;
 } & ForcedSubject<"comment">;
 
-type AppSubjects = Post | Comment | SubjectName;
-type AppAbility = MongoAbility<[Action, AppSubjects]>;
+export type AppSubjects = PostSubject | CommentSubject | SubjectName;
+export type AppAbility = MongoAbility<[Action, AppSubjects]>;
 
 // アビリティ定義関数
 export function defineAbilityFor(user: User | undefined) {
@@ -142,6 +143,41 @@ can("update", "post", { authorId: user.id });
 
 // 承認済みの投稿のみ閲覧可能
 can("read", "post", { approved: true });
+```
+
+## subjectも実装する
+
+CASLはsubjectユーティリティがあります。これも書き換えます
+
+```ts
+import { subject as caslSubject } from "@casl/ability";
+import type {
+  PostSubject,
+  CommentSubject,
+} from "./types";
+
+type SubjectMap = {
+  "post": PostSubject;
+  "comment": CommentSubject;
+};
+
+export function subject<T extends keyof SubjectMap>(
+  type: T,
+  data: Omit<SubjectMap[T], "__caslSubjectType__">,
+): SubjectMap[T] {
+  return caslSubject(type, data) as unknown as SubjectMap[T];
+}
+
+// 使用例
+const postInstance = subject("post", {
+  authorId: "1",
+  approved: true,
+});
+
+const commentInstance = subject("comment", {
+  authorId: "2",
+  content: "素晴らしい記事です",
+});
 ```
 
 ## まとめ
