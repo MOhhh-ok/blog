@@ -13,13 +13,13 @@ categories: ["React"]
 
 ## Remotion
 
-<!--Remotionの簡単な説明-->
+Remotionは、Reactコンポーネントを使って動画を作成できるライブラリです。従来の動画編集ソフトとは異なり、コードベースで動画を生成できるため、プログラマブルに動画制作が可能です。フレームごとにReactコンポーネントがレンダリングされ、それを連結することで動画が完成するという仕組みです。
 
 ## 画像フィルタの選択肢
 
 ### Remotion + Context2Dのフィルター
 
-<!-- Context2Dのフィルターは現在Safari未対応。サーバーレンダリングのみなら問題ないが、Playerを使用してブラウザ上で確認する場合はこれがネックになる-->
+Canvas 2D APIには`filter`プロパティが存在し、`blur()`や`brightness()`などのフィルタを適用できます。しかし2026年1月29日現在このContext2Dのフィルターは**Safari未対応**となっています。サーバーサイドでのレンダリングのみを行う場合は問題ありませんが、Remotion Playerを使用してブラウザ上でプレビューを確認する際には、この互換性の問題がネックとなってしまいます。
 
 ### Remotion + Pixi.js
 
@@ -27,15 +27,15 @@ Remotion + Pixi.jsの選択肢もあるかと思います。ただこちらはRe
 
 ### Remotion + Three.js
 
-<!-- Remotion + Threeの相性について。@remotion/threeの存在 -->
+RemotionはThree.jsとの統合を公式にサポートしており、`@remotion/three`パッケージが提供されています。このパッケージには`ThreeCanvas`コンポーネントが含まれており、Remotionのフレームレンダリングと同期した3D描画が可能となります。WebGLで複雑なフィルタ処理を実現できる上に、React Three Fiberのエコシステムも活用できるため、非常に強力な選択肢となります。
 
 ## 初期フレーム欠落問題
 
-Remotion + Three.jsの構成で挑みましたが、初期フレームがどうしても欠落する問題がありました。THREE.TextureLoaderを使用し、Remotion APIであるdelayRender, continueRenderを駆使するも、なぜか0.5秒ほど画像のない時間が発生してしまいます。レンダリングは１フレームずつ処理されますが、canvasの描画タイミングがどうしても合いませんでした。
+Remotion + Three.jsの構成で挑みましたが、初期フレームがどうしても欠落する問題がありました。理論的には、初期時にdelayRenderでストップし、TextureLoaderで読み込んだ後にcontinueRenderを呼び出す事で、正確に画像が表示されるはずですが、実際には0.5秒ほど欠落します。Threeのキャンバス描画タイミングが、どうしても合いませんでした。
 
 ## Suspense + useLoaderを使用
 
-SuspenseとuseLoaderを使用する事で解決しました。見通しのためプロパティなどは省略しています。
+SuspenseとuseLoaderを使用する事で解決しました。以下のようにします。見通しのためプロパティなどは省略しています。
 
 ```tsx
 import { useLoader } from "@react-three/fiber";
@@ -69,4 +69,4 @@ function ImageMesh() {
 }
 ```
 
-useLoaderは画像が読み込まれるまでSuspendするため、それをSuspenceでキャッチする形ですね。これで初期フレーム欠落がなくなりました。
+useLoaderは画像が読み込まれるまでSuspendするため、それをSuspenseで待機する形ですね。これで初期フレーム欠落がなくなりました。
