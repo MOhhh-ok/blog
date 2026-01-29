@@ -70,3 +70,33 @@ function ImageMesh() {
 ```
 
 useLoaderは画像が読み込まれるまでSuspendするため、それをSuspenseで待機する形ですね。これで初期フレーム欠落がなくなりました。
+
+## 注意: Playerではちらつきが発生
+
+上記の方法でRender処理の問題は解決しましたが、新たにブラウザでのPlayer問題が発生しました。例えば以下のようなコードをSequence内で使います。
+
+```tsx
+  // Sequenseの中
+  return (
+    <AbsoluteFill>
+      <ThreeCanvas
+        orthographic={true}
+        width={800}
+        height={800}
+        style={{ backgroundColor: "blue" }}
+      >
+        <mesh>
+          <planeGeometry args={[200, 200]} />
+          <meshBasicMaterial color="red" />
+        </mesh>
+      </ThreeCanvas>
+    </AbsoluteFill>
+  );
+
+```
+
+一見すると問題ないシンプルな実装ですが、Player再生時に遅延が生じ、ちらつきが発生します。これはSequenceが移るタイミングで再マウントされる関係から、Canvasの再生成に時間がかかるためのようです。
+
+以下で報告されていますが、公式は未対応です。
+
+https://github.com/remotion-dev/remotion/issues/4201
