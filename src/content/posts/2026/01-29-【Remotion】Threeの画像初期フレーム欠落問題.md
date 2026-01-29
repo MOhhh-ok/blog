@@ -50,7 +50,6 @@ export function ImageBackground() {
     <AbsoluteFill>
       <Suspense fallback={null}>
         <ThreeCanvas>
-          <ambientLight intensity={1} />
           <ImageMesh />
         </ThreeCanvas>
       </Suspense>
@@ -63,6 +62,7 @@ function ImageMesh() {
 
   return (
     <mesh>
+      <planeGeometry />
       <meshBasicMaterial map={texture} />
     </mesh>
   );
