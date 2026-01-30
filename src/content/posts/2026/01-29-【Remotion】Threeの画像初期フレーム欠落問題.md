@@ -33,7 +33,7 @@ RemotionはThree.jsとの統合を公式にサポートしており、`@remotion
 
 Remotion + Three.jsの構成で挑みましたが、初期フレームがどうしても欠落する問題がありました。理論的には、初期時にdelayRenderでストップし、TextureLoaderで読み込んだ後にcontinueRenderを呼び出す事で、正確に画像が表示されるはずですが、実際には0.5秒ほど欠落します。Threeのキャンバス描画タイミングが、どうしても合いませんでした。
 
-## Suspense + useLoaderを使用
+### Suspense + useLoaderでの対策
 
 SuspenseとuseLoaderを使用する事で解決しました。以下のようにします。見通しのためプロパティなどは省略しています。
 
@@ -73,30 +73,120 @@ useLoaderは画像が読み込まれるまでSuspendするため、それをSusp
 
 ## 注意: Playerではちらつきが発生
 
-上記の方法でRender処理の問題は解決しましたが、新たにブラウザでのPlayer問題が発生しました。例えば以下のようなコードをSequence内で使います。
+上記の方法でRender処理の問題は解決しましたが、ブラウザでのPlayer問題が発生しました。例えば以下のようなコードです。
 
 ```tsx
-  // Sequenseの中
+import { ThreeCanvas } from "@remotion/three";
+import { AbsoluteFill, Sequence } from "remotion";
+
+export function ThreeProblem() {
   return (
     <AbsoluteFill>
-      <ThreeCanvas
-        orthographic={true}
-        width={800}
-        height={800}
-        style={{ backgroundColor: "blue" }}
-      >
-        <mesh>
-          <planeGeometry args={[200, 200]} />
-          <meshBasicMaterial color="red" />
-        </mesh>
-      </ThreeCanvas>
+      <Sequence from={0} style={{ background: "green" }}>
+        <AbsoluteFill></AbsoluteFill>
+      </Sequence>
+      <Sequence from={20}>
+        <AbsoluteFill>
+          {/* blue背景と時間差でredが表示されてしまう */}
+          <ThreeCanvas
+            orthographic={true}
+            width={800}
+            height={800}
+            style={{ backgroundColor: "blue" }}
+          >
+            <mesh>
+              <planeGeometry args={[200, 200]} />
+              <meshBasicMaterial color="red" />
+            </mesh>
+          </ThreeCanvas>
+        </AbsoluteFill>
+      </Sequence>
     </AbsoluteFill>
   );
-
+}
 ```
 
-一見すると問題ないシンプルな実装ですが、Player再生時に遅延が生じ、ちらつきが発生します。これはSequenceが移るタイミングで再マウントされる関係から、Canvasの再生成に時間がかかるためのようです。
+一見すると問題ない、決して重い処理でもないシンプルな実装ですが、シーン切り替え時にレンダリングのずれが生じます。これはSequenceが移るタイミングで再マウントされる関係から、Canvasの再生成に時間がかかるためのようです。
 
-以下で報告されていますが、公式は未対応です。
+### Sequenceのマウントタイミング
+
+下記のコードでテストしてみます。
+
+```tsx
+import { useEffect } from "react";
+import { AbsoluteFill, Sequence } from "remotion";
+
+export function MountTest() {
+  return (
+    <AbsoluteFill>
+      <Sequence from={10} style={{ background: "blue" }}>
+        <Test name="Blue" />
+      </Sequence>
+      <Sequence from={50} style={{ background: "green" }}>
+        <Test name="Green" />
+      </Sequence>
+    </AbsoluteFill>
+  );
+}
+
+function Test(props: { name: string }) {
+  useEffect(() => {
+    console.log(`Test ${props.name} mounted`);
+    return () => {
+      console.log(`Test ${props.name} unmounted`);
+    };
+  }, []);
+  return <div style={{ fontSize: 50 }}>{props.name}</div>;
+}
+```
+
+Remotion Studioでテストした結果、以下のようになりました。
+
+- 進む時はMountが蓄積される
+- 戻る時はUnmountされる
+
+前述のThreeCanvasは進むときのみ（戻ってから進むのも含む）ちらつきが発生していたため、納得の結果です。このことから、Sequenceのアンマウントを防ぐ方法が有効かもしれません。メモリに関しては、もともと進む場合に限ってはMountが蓄積される仕様のため、あまり気にしなくていい可能性があります。
+
+### 内部実装を伴う修正
+
+以下では内部実装を使用した解決策が提示されています。
 
 https://github.com/remotion-dev/remotion/issues/4201
+
+ただしRemotionのバージョンアップに伴って使えなくなる可能性があり、メンテナンスに難があります。
+
+### 薄いラッパーで対策
+
+下記のようなラッパーで対策することもできます。
+
+```tsx
+function PreloadedSequence(
+  props: SequenceProps & {
+    from: number;
+    preloadFrames: number;
+  },
+) {
+  const { from, durationInFrames, preloadFrames, children } = props;
+  const frame = useCurrentFrame();
+  const actualFrom = from - preloadFrames;
+  const isVisible = frame >= from;
+
+  return (
+    <Sequence
+      from={actualFrom}
+      durationInFrames={durationInFrames ? durationInFrames + preloadFrames : undefined}
+    >
+      <div
+        style={{
+          opacity: isVisible ? 1 : 0,
+          pointerEvents: isVisible ? "auto" : "none",
+        }}
+      >
+        {children}
+      </div>
+    </Sequence>
+  );
+}
+```
+
+これを通常のSequenceの代わりに使用することで、実際のレンダリングより前にpreloadするとができます。これを使うと、そもそもSuspenseなども不要かもしれませんね。
