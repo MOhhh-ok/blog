@@ -192,4 +192,4 @@ export function PreloadedSequence(
 }
 ```
 
-これを通常のSequenceの代わりに使用することで、実際のレンダリングより前にpreloadするとができます。これを使うと、そもそもSuspenseなども不要かもしれませんね。
+これを通常のSequenceの代わりに使用することで、実際のレンダリングより前にpreloadするとができます。ただ最初の１シーンはプリロードできないため、前述のSuspense + useLoaderが必要になってきそうです。
