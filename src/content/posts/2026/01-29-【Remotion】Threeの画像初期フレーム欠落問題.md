@@ -160,21 +160,24 @@ https://github.com/remotion-dev/remotion/issues/4201
 下記のようなラッパーで対策することもできます。
 
 ```tsx
-function PreloadedSequence(
-  props: SequenceProps & {
+export function PreloadedSequence(
+  props: Omit<SequenceProps, "from"> & {
     from: number;
     preloadFrames: number;
   },
 ) {
-  const { from, durationInFrames, preloadFrames, children } = props;
+  const { from, preloadFrames, durationInFrames, children, ...rest } = props;
   const frame = useCurrentFrame();
-  const actualFrom = from - preloadFrames;
   const isVisible = frame >= from;
+
+  const actualFrom = Math.max(from - preloadFrames, 0);
+  const actualPreloadFrames = from - actualFrom;
 
   return (
     <Sequence
       from={actualFrom}
-      durationInFrames={durationInFrames ? durationInFrames + preloadFrames : undefined}
+      durationInFrames={durationInFrames ? durationInFrames + actualPreloadFrames : undefined}
+      {...rest}
     >
       <div
         style={{
