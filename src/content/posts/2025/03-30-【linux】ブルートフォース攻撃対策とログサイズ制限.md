@@ -1,7 +1,7 @@
 ---
 title: "【Linux】ブルートフォース攻撃対策とログサイズ制限"
 pubDate: 2025-03-30
-categories: ["Linux"]
+categories: ["開発"]
 tags: []
 ---
 

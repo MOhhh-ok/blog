@@ -2,7 +2,6 @@
 title: "GCEの無料枠でWordPressを立ち上げてみた"
 pubDate: 2023-03-17
 categories: ["Google Cloud"]
-tags: ["Docker", "GCP", "WordPress"]
 ---
 
 ![](http://35.221.87.155/wp-content/uploads/2023/03/server-2546330_640.jpg)

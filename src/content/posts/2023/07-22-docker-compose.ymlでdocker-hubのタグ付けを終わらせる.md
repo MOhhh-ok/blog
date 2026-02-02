@@ -1,7 +1,7 @@
 ---
 title: "docker-compose.ymlでDocker Hubのタグ付けを終わらせる"
 pubDate: 2023-07-22
-categories: ["Docker"]
+categories: ["開発"]
 tags: []
 ---
 

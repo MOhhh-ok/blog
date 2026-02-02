@@ -1,7 +1,7 @@
 ---
 title: "WordPressでCall to undefined method GuzzleHttp\\Utils::chooseHandler()"
 pubDate: 2023-09-15
-categories: ["WordPress"]
+categories: ["PHP"]
 tags: []
 ---
 

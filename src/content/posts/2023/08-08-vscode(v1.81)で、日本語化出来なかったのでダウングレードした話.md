@@ -1,7 +1,7 @@
 ---
 title: "VSCode(V1.81)で、日本語化出来なかったのでダウングレードした話"
 pubDate: 2023-08-08
-categories: ["エディタ"]
+categories: ["開発"]
 tags: []
 ---
 

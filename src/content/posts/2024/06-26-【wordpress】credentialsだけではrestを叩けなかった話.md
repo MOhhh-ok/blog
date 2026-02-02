@@ -1,7 +1,7 @@
 ---
 title: "【WordPress】credentialsだけではrestを叩けなかった話"
 pubDate: 2024-06-26
-categories: ["WordPress"]
+categories: ["PHP"]
 tags: []
 ---
 

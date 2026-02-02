@@ -1,7 +1,7 @@
 ---
 title: "【WordPress】プラグインContent Viewsのfilterフック一覧"
 pubDate: 2024-04-25
-categories: ["WordPress"]
+categories: ["PHP"]
 tags: []
 ---
 

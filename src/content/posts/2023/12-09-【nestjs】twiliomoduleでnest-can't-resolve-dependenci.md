@@ -1,7 +1,7 @@
 ---
 title: "【NestJS】TwilioModuleでNest can't resolve dependencies of the TwilioService"
 pubDate: 2023-12-09
-categories: ["NestJS"]
+categories: ["Node.js"]
 tags: []
 ---
 

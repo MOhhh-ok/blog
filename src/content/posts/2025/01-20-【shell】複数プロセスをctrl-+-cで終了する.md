@@ -1,7 +1,7 @@
 ---
 title: "【Shell】複数プロセスをCtrl + Cで終了する"
 pubDate: 2025-01-20
-categories: ["Shell"]
+categories: ["開発"]
 tags: []
 ---
 

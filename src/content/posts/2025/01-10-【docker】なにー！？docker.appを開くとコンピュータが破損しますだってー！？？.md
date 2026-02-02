@@ -1,7 +1,7 @@
 ---
 title: "【Docker】なにー！？docker.appを開くとコンピュータが破損しますだってー！？？"
 pubDate: 2025-01-10
-categories: ["Docker"]
+categories: ["開発"]
 tags: []
 ---
 

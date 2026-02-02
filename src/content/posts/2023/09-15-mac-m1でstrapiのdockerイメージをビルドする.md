@@ -1,7 +1,7 @@
 ---
 title: "Mac M1でStrapiのDockerイメージをビルドする"
 pubDate: 2023-09-15
-categories: ["Docker"]
+categories: ["開発"]
 tags: []
 ---
 

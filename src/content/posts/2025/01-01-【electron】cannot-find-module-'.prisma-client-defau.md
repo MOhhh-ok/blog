@@ -1,7 +1,7 @@
 ---
 title: "【Electron】Cannot find module '.prisma/client/default'"
 pubDate: 2025-01-01
-categories: ["Electron", "Prisma"]
+categories: ["TypeScript"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【NestJS】nest startが遅いため、別の方法でスタートする"
 pubDate: 2024-02-28
-categories: ["NestJS"]
+categories: ["Node.js"]
 tags: []
 ---
 

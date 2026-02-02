@@ -1,7 +1,7 @@
 ---
 title: "VSCode Github Copilot Chatに日本語で答えてもらう"
 pubDate: 2023-10-13
-categories: ["エディタ"]
+categories: ["開発"]
 tags: []
 ---
 

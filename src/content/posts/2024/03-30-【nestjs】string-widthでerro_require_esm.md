@@ -1,7 +1,7 @@
 ---
 title: "【NestJS】string-widthでERRO_REQUIRE_ESM"
 pubDate: 2024-03-30
-categories: ["NestJS"]
+categories: ["Node.js"]
 tags: []
 ---
 

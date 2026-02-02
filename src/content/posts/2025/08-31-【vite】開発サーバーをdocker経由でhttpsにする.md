@@ -1,7 +1,7 @@
 ---
 title: "【Vite】開発サーバーをDocker経由でhttpsにする"
 pubDate: 2025-08-31
-categories: ["Vite"]
+categories: ["TypeScript"]
 tags: []
 ---
 

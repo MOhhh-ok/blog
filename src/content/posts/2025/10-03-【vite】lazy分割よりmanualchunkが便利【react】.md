@@ -1,7 +1,7 @@
 ---
 title: "【Vite】lazy分割よりmanualChunkが便利【React】"
 pubDate: 2025-10-03
-categories: ["Vite"]
+categories: ["TypeScript"]
 tags: []
 ---
 

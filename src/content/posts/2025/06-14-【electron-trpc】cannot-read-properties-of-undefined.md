@@ -1,7 +1,7 @@
 ---
 title: "【electron-trpc】Cannot read properties of undefined (reading 'serialize')"
 pubDate: 2025-06-14
-categories: ["Electron"]
+categories: ["TypeScript"]
 tags: []
 ---
 

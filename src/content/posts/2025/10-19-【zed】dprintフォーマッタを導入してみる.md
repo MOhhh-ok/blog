@@ -1,7 +1,7 @@
 ---
 title: "【Zed】dprintフォーマッタを導入してみる"
 pubDate: 2025-10-19
-categories: ["エディタ"]
+categories: ["開発"]
 tags: []
 ---
 

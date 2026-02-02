@@ -1,7 +1,7 @@
 ---
 title: "【WordPress】GCEでヘルスチェックと起動スクリプトを試してみた"
 pubDate: 2024-02-16
-categories: ["WordPress"]
+categories: ["PHP"]
 tags: []
 ---
 

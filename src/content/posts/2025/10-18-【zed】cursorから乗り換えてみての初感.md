@@ -1,7 +1,7 @@
 ---
 title: "【Zed】Cursorから乗り換えてみての初感"
 pubDate: 2025-10-18
-categories: ["エディタ"]
+categories: ["開発"]
 tags: []
 ---
 

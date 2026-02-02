@@ -1,7 +1,7 @@
 ---
 title: "【Cron】shだとsourceが使えなくておぎゃぁ"
 pubDate: 2025-01-13
-categories: ["Shell", "未分類"]
+categories: ["開発"]
 tags: []
 ---
 

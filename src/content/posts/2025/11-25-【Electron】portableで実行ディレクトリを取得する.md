@@ -1,7 +1,7 @@
 ---
 title: 【Electron】portableで実行ディレクトリを取得する
 pubDate: 2025-11-25
-categories: ["Electron"]
+categories: ["TypeScript"]
 ---
 
 こんにちは、フリーランスエンジニアの太田雅昭です。

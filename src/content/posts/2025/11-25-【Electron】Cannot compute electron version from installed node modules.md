@@ -1,7 +1,7 @@
 ---
 title: 【Electron】モノレポでCannot compute electron version from installed node modules
 pubDate: 2025-11-25
-categories: ["Electron"]
+categories: ["TypeScript"]
 ---
 
 こんにちは、フリーランスエンジニアの太田雅昭です。

@@ -1,7 +1,7 @@
 ---
 title: "【electron-vite】モノレポ環境で気をつけること【Module Type】"
 pubDate: 2025-08-06
-categories: ["Electron"]
+categories: ["TypeScript"]
 tags: []
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "【Linux】SSH鍵を設定したのに、パスワードを求められてしまう"
 pubDate: 2025-02-25
-categories: ["Linux"]
+categories: ["開発"]
 tags: []
 ---
 

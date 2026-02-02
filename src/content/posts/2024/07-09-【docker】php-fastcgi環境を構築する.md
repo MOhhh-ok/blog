@@ -1,7 +1,7 @@
 ---
 title: "【Docker】PHP FastCGI環境を構築する"
 pubDate: 2024-07-09
-categories: ["Docker"]
+categories: ["開発"]
 tags: []
 ---
 

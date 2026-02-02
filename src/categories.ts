@@ -11,11 +11,8 @@ export const CATEGORIES = [
   "未分類",
   "Google",
   "Google Cloud",
-  "エディタ",
-  "Docker",
   "Python",
   "GAS",
-  "WordPress",
   "AI",
   "PHP",
   "Next.js",
@@ -24,15 +21,10 @@ export const CATEGORIES = [
   "MUI",
   "React",
   "HTML",
-  "NestJS",
   "Prisma",
   "Database",
   "Laravel",
-  "Shell",
-  "Electron",
   "Flutter",
-  "Vite",
-  "Linux",
   "C2PA",
   "Drizzle",
   "開発",
@@ -45,7 +37,6 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
       {
         category: "Node.js",
         children: [
-          { category: "NestJS" },
           { category: "Prisma" },
           { category: "Drizzle" },
         ],
@@ -57,8 +48,6 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
           { category: "MUI" },
         ],
       },
-      { category: "Vite" },
-      { category: "Electron" },
     ],
   },
   {
@@ -70,12 +59,7 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
   },
   {
     category: "開発",
-    children: [
-      { category: "Docker" },
-      { category: "エディタ" },
-      { category: "Shell", children: [] },
-      { category: "Linux", children: [] },
-    ],
+    children: [],
   },
   {
     category: "AI",
@@ -89,7 +73,6 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
         category: "Laravel",
         children: [],
       },
-      { category: "WordPress" },
     ],
   },
   {

@@ -1,7 +1,7 @@
 ---
 title: "【NestJS】ConfigModuleは.envを上書きできない"
 pubDate: 2023-12-14
-categories: ["NestJS"]
+categories: ["Node.js"]
 tags: []
 ---
 
