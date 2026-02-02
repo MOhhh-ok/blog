@@ -1,7 +1,7 @@
 ---
 title: "ストリーミング時のhttps-portal設定"
 pubDate: 2023-08-22
-categories: ["Docker"]
+categories: ["開発"]
 tags: []
 ---
 
