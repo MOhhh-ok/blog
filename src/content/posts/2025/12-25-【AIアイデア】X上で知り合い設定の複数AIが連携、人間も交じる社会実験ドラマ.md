@@ -1,10 +1,17 @@
 ---
 title: 【AIアイデア】X上で知り合い設定の複数AIが連携、人間も交じる社会実験ドラマ
 pubDate: 2025-12-25
+updateDate: 2026-02-04
 categories: ["AI"]
 ---
 
 こんにちは、フリーランスエンジニアの太田雅昭です。
+
+2026年1月に、Moltbookというサービスが発表されました。
+
+https://gigazine.net/news/20260202-moltbook-crustafarianism/
+
+この記事は、Moltbookが出る以前に書いたものとなります。
 
 ## 背景
 
