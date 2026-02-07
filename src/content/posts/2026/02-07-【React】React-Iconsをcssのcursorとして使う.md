@@ -38,10 +38,8 @@ export default function App() {
     const svgString = renderToStaticMarkup(
       <IoMdResize style={{ color: "red" }} />,
     );
-    // SVG文字列をURLエンコード(特殊文字をエスケープするために必要)
-    const encodedSvg = encodeURIComponent(svgString);
-    // data URL形式に変換
-    setDataUrl(`data:image/svg+xml,${encodedSvg}`);
+    const base64Svg = btoa(svgString);
+    setDataUrl(`data:image/svg+xml;base64,${base64Svg}`);
   }, []);
   
   return (
