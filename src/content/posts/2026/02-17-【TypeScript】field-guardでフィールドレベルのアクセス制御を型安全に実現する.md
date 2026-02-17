@@ -153,4 +153,234 @@ mergeFieldVerdicts("intersection", [verdictA, verdictB], fields);
 ```
 
 
+## 具体的なユースケース
+
+実際のプロジェクトで遭遇しそうなシナリオをいくつか紹介させていただきます。
+
+### ECサイトの商品管理
+
+管理者は原価や仕入れ先を含む全フィールドを閲覧でき、出品者は自分の商品の原価まで見れるが、一般ユーザーには公開情報しか見せたくないというケース。
+
+```ts
+import { defineGuard } from "field-guard";
+
+type Ctx = { userId: string; role: "admin" | "seller" | "buyer" };
+
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  cost: number;          // 原価
+  supplier: string;      // 仕入れ先
+  stock: number;         // 在庫数
+  sellerId: string;
+};
+
+const productGuard = defineGuard<Ctx>()({
+  fields: ["id", "name", "price", "cost", "supplier", "stock", "sellerId"],
+  policy: {
+    admin: true,                                          // 全フィールド
+    ownSeller: { id: true, name: true, price: true, cost: true, stock: true, sellerId: true }, // 仕入れ先以外
+    otherSeller: { id: true, name: true, price: true },   // 公開情報のみ
+    buyer: { id: true, name: true, price: true },          // 公開情報のみ
+  },
+}).withCheck<Product>()(({ ctx, target, verdictMap }) => {
+  if (ctx.role === "admin") return verdictMap.admin;
+  if (ctx.role === "seller") {
+    return ctx.userId === target.sellerId
+      ? verdictMap.ownSeller
+      : verdictMap.otherSeller;
+  }
+  return verdictMap.buyer;
+});
+
+// 使用例
+const guard = productGuard.for({ userId: "seller-1", role: "seller" });
+
+const product = {
+  id: "p1", name: "ワイヤレスイヤホン", price: 3980,
+  cost: 1200, supplier: "Shenzhen Audio Co.", stock: 150, sellerId: "seller-1",
+};
+
+const v = guard.check(product);
+v.allowedFields; // ["id", "name", "price", "cost", "stock", "sellerId"]
+// supplier（仕入れ先）は見えない
+```
+
+### SaaSの請求情報
+
+マルチテナントSaaSで、テナントオーナーは請求の全詳細を見れるが、一般メンバーは金額サマリーだけ、外部の監査人にはID情報と金額のみ公開するケース。ブラックリスト方式も活用しています。
+
+```ts
+import { defineGuard } from "field-guard";
+
+type Ctx = { userId: string; tenantId: string; role: "owner" | "member" | "auditor" };
+
+type Invoice = {
+  id: string;
+  tenantId: string;
+  amount: number;
+  tax: number;
+  cardLast4: string;     // カード下4桁
+  billingEmail: string;
+  internalNote: string;  // 社内メモ
+};
+
+const invoiceGuard = defineGuard<Ctx>()({
+  fields: ["id", "tenantId", "amount", "tax", "cardLast4", "billingEmail", "internalNote"],
+  policy: {
+    owner: { internalNote: false },                          // internalNote以外すべて（ブラックリスト）
+    member: { id: true, tenantId: true, amount: true, tax: true }, // サマリーのみ
+    auditor: { id: true, tenantId: true, amount: true, tax: true }, // 監査用の最小限
+    denied: false,                                           // テナント外は全拒否
+  },
+}).withCheck<Invoice>()(({ ctx, target, verdictMap }) => {
+  // テナントが違えば問答無用で拒否
+  if (ctx.tenantId !== target.tenantId) return verdictMap.denied;
+  return verdictMap[ctx.role];
+});
+
+// 使用例：オーナーが自テナントの請求を確認
+const guard = invoiceGuard.for({ userId: "u1", tenantId: "t1", role: "owner" });
+
+const invoice = {
+  id: "inv-001", tenantId: "t1", amount: 50000, tax: 5000,
+  cardLast4: "1234", billingEmail: "billing@company.com", internalNote: "要確認",
+};
+
+const v = guard.check(invoice);
+v.allowedFields; // ["id", "tenantId", "amount", "tax", "cardLast4", "billingEmail"]
+// internalNoteはブラックリストで除外される
+```
+
+### SNSのプロフィール
+
+友達には詳しいプロフィールを見せ、非公開アカウントの場合は友達以外にはほぼ何も見せないケース。`withCheck`の中で複合的な条件分岐を行います。
+
+```ts
+import { defineGuard } from "field-guard";
+
+type Ctx = { userId: string; friendIds: string[] };
+
+type Profile = {
+  id: string;
+  displayName: string;
+  bio: string;
+  birthday: string;
+  location: string;
+  email: string;
+  isPrivate: boolean;
+};
+
+const profileGuard = defineGuard<Ctx>()({
+  fields: ["id", "displayName", "bio", "birthday", "location", "email", "isPrivate"],
+  policy: {
+    self: true,
+    friend: { id: true, displayName: true, bio: true, birthday: true, location: true, isPrivate: true },
+    public: { id: true, displayName: true, bio: true, isPrivate: true },
+    restricted: { id: true, displayName: true, isPrivate: true }, // 非公開アカウントの外部向け
+  },
+}).withCheck<Profile>()(({ ctx, target, verdictMap }) => {
+  if (ctx.userId === target.id) return verdictMap.self;
+  const isFriend = ctx.friendIds.includes(target.id);
+  if (isFriend) return verdictMap.friend;
+  // 非公開アカウントなら最小限のみ
+  if (target.isPrivate) return verdictMap.restricted;
+  return verdictMap.public;
+});
+
+// 使用例
+const guard = profileGuard.for({ userId: "u1", friendIds: ["u2", "u3"] });
+
+// 友達のプロフィール
+const friendVerdict = guard.check({
+  id: "u2", displayName: "友達太郎", bio: "こんにちは",
+  birthday: "1990-01-01", location: "東京", email: "friend@example.com", isPrivate: false,
+});
+friendVerdict.allowedFields;
+// ["id", "displayName", "bio", "birthday", "location", "isPrivate"]
+
+// 非公開アカウントの他人
+const privateVerdict = guard.check({
+  id: "u99", displayName: "秘密さん", bio: "非公開です",
+  birthday: "2000-12-25", location: "不明", email: "secret@example.com", isPrivate: true,
+});
+privateVerdict.allowedFields;
+// ["id", "displayName", "isPrivate"]
+```
+
+### APIレスポンスのフィルタリング
+
+実際のAPIで使う場合、verdictの結果をもとにオブジェクトからフィールドを削ぎ落とす処理が必要になります。ヘルパー関数と組み合わせた実践的なパターンを紹介します。
+
+```ts
+import { defineGuard, combineGuards } from "field-guard";
+
+// verdictを使ってオブジェクトをフィルタリングするヘルパー
+function filterByVerdict<T extends Record<string, unknown>>(
+  obj: T,
+  allowedFields: string[],
+): Partial<T> {
+  const result: Partial<T> = {};
+  for (const field of allowedFields) {
+    if (field in obj) {
+      (result as Record<string, unknown>)[field] = obj[field];
+    }
+  }
+  return result;
+}
+
+// --- Guard定義 ---
+type Ctx = { userId: string; role: "admin" | "user" };
+type User = { id: string; email: string; name: string; salary: number };
+
+const userGuard = defineGuard<Ctx>()({
+  fields: ["id", "email", "name", "salary"],
+  policy: {
+    admin: true,
+    self: { salary: false },               // 自分でも給与は見えない
+    other: { id: true, name: true },
+  },
+}).withCheck<User>()(({ ctx, target, verdictMap }) => {
+  if (ctx.role === "admin") return verdictMap.admin;
+  if (ctx.userId === target.id) return verdictMap.self;
+  return verdictMap.other;
+});
+
+// --- APIハンドラでの使用例 ---
+async function getUser(currentUser: Ctx, targetUserId: string) {
+  // DBからユーザーを取得（仮）
+  const user: User = {
+    id: targetUserId, email: "user@example.com",
+    name: "田中太郎", salary: 5000000,
+  };
+
+  const guard = userGuard.for(currentUser);
+  const verdict = guard.check(user);
+
+  // verdictに基づいてフィルタリングして返す
+  return filterByVerdict(user, verdict.allowedFields);
+}
+
+// 一般ユーザーが他人を見た場合 => { id: "u2", name: "田中太郎" }
+// 一般ユーザーが自分を見た場合 => { id: "u1", email: "user@example.com", name: "田中太郎" }
+// 管理者が見た場合           => { id: "u2", email: "user@example.com", name: "田中太郎", salary: 5000000 }
+```
+
+配列に対してまとめてフィルタリングしたい場合は、以下のようになります。
+
+```ts
+async function listUsers(currentUser: Ctx) {
+  const users: User[] = [/* DBから取得 */];
+  const guard = userGuard.for(currentUser);
+
+  return users.map((user) => {
+    const verdict = guard.check(user);
+    return filterByVerdict(user, verdict.allowedFields);
+  });
+}
+```
+
+`for()`でコンテキストを一度だけバインドし、`check()`をループ内で呼び出す設計になっているため、リスト系APIでも効率的に使えます。
+
 https://github.com/mohhh-ok/field-guard
