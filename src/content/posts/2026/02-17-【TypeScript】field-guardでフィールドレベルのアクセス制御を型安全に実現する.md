@@ -43,7 +43,7 @@ import { defineGuard } from "field-guard";
 
 type Ctx = { userId: string; role: "admin" | "user" };
 
-const userGuard = defineGuard<"owner" | "other", Ctx>()({
+const userGuard = defineGuard<Ctx>()({
   fields: ["id", "email", "name"],
   policy: {
     owner: true,                     // 全フィールド許可
@@ -68,7 +68,7 @@ trueを含むオブジェクトはホワイトリスト、falseのみのオブ�
 ```ts
 type User = { id: string; email: string; name: string };
 
-const userGuard = defineGuard<"owner" | "other", Ctx>()({
+const userGuard = defineGuard<Ctx>()({
   fields: ["id", "email", "name"],
   policy: {
     owner: true,
@@ -110,7 +110,7 @@ verdict.coversSome(["email"]);      // true: 指定フィールドのいずれ�
 `.withDerive()`で、コンテキストから追加のプロパティを計算できます。
 
 ```ts
-const guard = defineGuard<"public", Ctx>()({
+const guard = defineGuard<Ctx>()({
   fields: ["id", "email"],
   policy: { public: true },
 }).withDerive(({ ctx }) => ({
