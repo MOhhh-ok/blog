@@ -11,87 +11,162 @@ Node.js/TypeScriptでのi18n、型ズレや初期設定の重さに悩まされ�
 
 ## i18nライブラリへの不満点
 
-現在数々のi18nライブラリがあります。用途によって使いやすさは変わってくるかと思いますが、最近のモノレポ, TypeScriptなどでのコーディングスタイルに合っているものがないように思います。具体的には以下のようなことがあります。
+現在数々のi18nライブラリがあります。用途によって使いやすさは変わってくるかと思いますが、最近のモノレポやTypeScriptでのコーディングスタイルに合っているものがないように思います。具体的には以下のようなことがあります。
 
-*   **型安全性が弱い**: 翻訳キーのタイポや引数不足が実行時まで発覚しない。
-*   **初期設定が煩雑**: 設定ファイルやプラグインが多く、導入に腰が重い。
-*   **テンプレート制約**: 独自タグや制限付き構文で表現力が足りない。
-*   **深いデータ適用が面倒**: ネストしたオブジェクト/配列にロケールを一括適用しづらい。
-*   **フォールバック粒度が粗い**: 画面単位でしかフォールバックできず、細かい制御が難しい。
+- **型安全性が弱い**: 翻訳キーのタイポや引数不足が実行時まで発覚しない。
+- **初期設定が煩雑**: 設定ファイルやプラグインが多く、導入に腰が重い。
+- **テンプレート制約**: `{{placeholder}}` のような独自構文で表現力が足りない。
+- **深いデータ適用が面倒**: ネストしたオブジェクト/配列にロケールを一括適用しづらい。
+- **ファイルが分散する**: 言語ごとにJSONファイルを分けるため、管理が煩雑になりがち。
 
 ## canopy-i18nで解決できること
 
 canopy-i18nは、下記のような特徴があります。
 
-*   **型安全なロケール/キー**: 許可ロケールを固定し、コンパイル時に検出。
-*   **メッセージ単位のフォールバック**: 欠落時はフォールバックロケールへ退避。
-*   **自由なテンプレート**: ただの関数（または文字列）なので、条件分岐や外部フォーマッタもそのまま使える。
-*   **深い適用を一発**: 定義ツリー全体にロケール適用。
-*   **軽量・シンプル**: 小さなAPI面と実装で、学習・保守コストが低い。
+- **型安全**: 許可ロケールやキーをコンパイル時にチェック。IntelliSenseも完全対応。
+- **コロケーション**: すべての翻訳を1ファイルにまとめられるので、ファイル間を飛び回る必要がない。
+- **ゼロ依存・ゼロ設定**: 外部依存なし。ローダーやプラグインの設定も不要。
+- **自由なテンプレート**: ただのTypeScript関数なので、条件分岐や外部フォーマッタもそのまま使える。
+- **ジェネリック返却型**: 文字列だけでなく、Reactコンポーネントやオブジェクトなど任意の型を返せる。
+- **AI対応**: 型情報と単一ファイル構成により、AIアシスタントが正確にコード生成できる。
 
-## 使い方（最小セット）
-
-インストール
+## インストール
 
 ```
 npm i canopy-i18n
-
 # or
-
 pnpm add canopy-i18n
+# or
+bun add canopy-i18n
 ```
 
-メッセージ定義と利用
+## 基本的な使い方
+
+`createI18n` でビルダーを作り、`.add()` でメッセージを定義、`.build()` でロケールを確定します。メッセージは関数として直接呼び出せます。
 
 ```typescript
-import { createMessageBuilder, applyLocaleDeep } from 'canopy-i18n';
+import { createI18n } from 'canopy-i18n';
 
+const messages = createI18n(['ja', 'en'] as const)
+  .add({
+    title: { ja: 'タイトル', en: 'Title' },
+    greeting: { ja: 'こんにちは', en: 'Hello' },
+  })
+  .build('en');
 
-// 1) ロケール宣言（フォールバック: ja）
-const builder = createMessageBuilder(['ja', 'en'] as const, 'ja');
-
-
-// 2) メッセージ定義（文字列 or 関数テンプレート）
-const title = builder({
-  ja: 'タイトルテスト',
-  en: 'Title Test',
-});
-
-const greet = builder<{ name: string; age: number }>({
-  ja: c => `こんにちは、${c.name}さん。あなたは${c.age}歳です。`,
-  en: c => `Hello, ${c.name}. You are ${c.age} years old.`,
-});
-
-
-// 3) メッセージツリーを組み立て
-const messages = {
-  title,
-  nested: { hello: builder({ ja: 'こんにちは', en: 'Hello' }) },
-  greet,
-};
-
-
-// 4) ツリー全体にロケール適用して利用
-
-const m = applyLocaleDeep(messages, 'en');
-
-console.log(m.title.render()); // "Title Test"
-console.log(m.nested.hello.render()); // "Hello"
-console.log(m.greet.render({ name: 'Tanaka', age: 20 }));
+console.log(messages.title());    // "Title"
+console.log(messages.greeting()); // "Hello"
 ```
 
-## Next.jsでの使用例
+同じビルダーから複数のロケールをビルドすることもできます。
 
-Next.jsでのサンプルを試すこともできます。
+```typescript
+const builder = createI18n(['ja', 'en'] as const)
+  .add({
+    title: { ja: 'タイトル', en: 'Title' },
+  });
 
-```bash
-git clone https://github.com/mohhh-ok/canopy-i18n
-cd canopy-i18n/examples/next-app
-pnpm install
-pnpm dev
+const ja = builder.build('ja');
+const en = builder.build('en');
+
+console.log(ja.title()); // "タイトル"
+console.log(en.title()); // "Title"
 ```
+
+## テンプレート関数
+
+動的な値を埋め込みたい場合は `.addTemplates()()` を使います。引数の型も推論されます。
+
+```typescript
+const messages = createI18n(['ja', 'en'] as const)
+  .addTemplates<{ name: string; age: number }>()({
+    welcome: {
+      ja: (ctx) => `こんにちは、${ctx.name}さん。${ctx.age}歳ですね。`,
+      en: (ctx) => `Hello, ${ctx.name}. You are ${ctx.age} years old.`,
+    },
+  })
+  .build('en');
+
+console.log(messages.welcome({ name: 'Tanaka', age: 20 }));
+// "Hello, Tanaka. You are 20 years old."
+```
+
+`.add()` と `.addTemplates()()` はメソッドチェーンで混在できます。
+
+```typescript
+const messages = createI18n(['ja', 'en'] as const)
+  .add({
+    title: { ja: 'マイページ', en: 'My Page' },
+  })
+  .addTemplates<{ count: number }>()({
+    items: {
+      ja: (ctx) => `${ctx.count}個のアイテム`,
+      en: (ctx) => `${ctx.count} items`,
+    },
+  })
+  .build('ja');
+
+console.log(messages.title());           // "マイページ"
+console.log(messages.items({ count: 5 })); // "5個のアイテム"
+```
+
+## カスタム返却型
+
+文字列以外を返すこともできます。たとえばオブジェクトを返したい場合は型引数を指定します。
+
+```typescript
+type MenuItem = { label: string; url: string };
+
+const menu = createI18n(['ja', 'en'] as const)
+  .add<MenuItem>({
+    home: {
+      ja: { label: 'ホーム', url: '/ja' },
+      en: { label: 'Home', url: '/en' },
+    },
+  })
+  .build('ja');
+
+console.log(menu.home().label); // "ホーム"
+console.log(menu.home().url);   // "/ja"
+```
+
+## Namespaceパターン（ファイル分割）
+
+規模が大きくなったらファイルを分割し、`bindLocale` でツリー全体にロケールを一括適用できます。
+
+```typescript
+// i18n/common.ts
+import { createI18n } from 'canopy-i18n';
+
+export const common = createI18n(['ja', 'en'] as const).add({
+  hello: { ja: 'こんにちは', en: 'Hello' },
+  goodbye: { ja: 'さようなら', en: 'Goodbye' },
+});
+
+// i18n/user.ts
+import { createI18n } from 'canopy-i18n';
+
+export const user = createI18n(['ja', 'en'] as const)
+  .addTemplates<{ name: string }>()({
+    welcome: {
+      ja: (ctx) => `ようこそ、${ctx.name}さん`,
+      en: (ctx) => `Welcome, ${ctx.name}`,
+    },
+  });
+
+// app.ts
+import { bindLocale } from 'canopy-i18n';
+import * as i18n from './i18n';
+
+const messages = bindLocale(i18n, 'en');
+
+console.log(messages.common.hello());              // "Hello"
+console.log(messages.user.welcome({ name: 'John' })); // "Welcome, John"
+```
+
+`bindLocale` はネストしたオブジェクトや配列も再帰的に処理するため、どれだけ構造が深くなっても一発でロケールを切り替えられます。
 
 ## リンク
 
-*   [npm](https://www.npmjs.com/package/canopy-i18n)
-*   [github](https://github.com/MOhhh-ok/canopy-i18n)
+- [npm](https://www.npmjs.com/package/canopy-i18n)
+- [GitHub](https://github.com/MOhhh-ok/canopy-i18n)
