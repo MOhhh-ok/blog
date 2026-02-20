@@ -37,14 +37,29 @@ TypeScriptの型チェックにはLSPが用いられますが、現在Zedはvtsl
 }
 ```
 
-このままだと複数サーバー結果が候補として出てきてしまうため、他を無効にします。
+```json
+"languages": {
+  "TypeScript": {
+    "language_servers": ["tsgo", "vtsls"]
+  },
+  "TSX": {
+    "language_servers": ["tsgo", "vtsls"]
+  },
+}
+```
+
+なおvtslsと複数指定していますが、これは公式で以下のように説明されています。
+
+> You can also use tsgo in tandem with other language servers (e.g. typescript-language-server or vtsls). Zed will use tsgo for features it supports and fallback to the next language server in the list for unsupported features. To do that with vtsls
+
+複数サーバー結果が候補として出るのが煩わしい場合は、以下のようにします。
 
 ```json
 "languages": {
   "TypeScript": {
-    "language_servers": ["!vtsls", "!typescript-language-server", "tsgo", "..."]
+    "language_servers": ["tsgo"]
   },
   "TSX": {
-    "language_servers": ["!vtsls", "!typescript-language-server", "tsgo", "..."]
+    "language_servers": ["tsgo"]
   },
 ```
