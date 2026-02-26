@@ -3,6 +3,7 @@ title: 環境システムのフロントエンド開発
 startDate: 2025-03
 endDate: 2025-08
 techs: ["React"]
+summary: デザインをもとにAgGridを使ったテーブル編集やAIフォームなどを実装した環境システムのフロントエンド開発。
 ---
 
 

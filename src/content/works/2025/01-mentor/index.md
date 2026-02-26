@@ -3,6 +3,7 @@ title: メンターとしてプログラミング支援
 startDate: 2025-01-01
 endDate: 2025-01-01
 techs: ["Cursor", "TypeScript"]
+summary: Google Meetを活用し、API概念の説明からCursor環境構築まで対応。数週間でFacebook APIを用いた広告自動作成を実現するレベルまでサポート。
 ---
 
 Google Meetを用いて、プログラミング学習をサポート。

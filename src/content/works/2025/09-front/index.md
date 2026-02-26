@@ -3,6 +3,7 @@ title: 経営分析・会計管理システムのフロントエンド開発
 startDate: 2025-09
 endDate: 2025-12
 techs: ["React"]
+summary: PNPM Workspaceのモノレポ構成でゼロから設計・実装。TanStack RouterやJotaiなどモダンなライブラリを採用し、経営分析・会計管理機能を構築。
 ---
 
 経営分析・会計管理システムのフロントエンド開発を担当。

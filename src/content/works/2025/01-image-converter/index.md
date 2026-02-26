@@ -3,6 +3,7 @@ title: 画像変換ツール
 startDate: 2025-01
 endDate: 2025-01
 techs: ["Flutter"]
+summary: 透かし追加・一括リネーム・リサイズ・CSV出力などを一括処理できるMac/Windows対応のデスクトップ向け画像変換ツール。
 ---
 
 画像変換ツールを作成しました

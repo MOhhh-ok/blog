@@ -3,6 +3,7 @@ title: "WordPress為替情報プラグイン"
 techs: ["WordPress", "React", "SQLite",  "Chart.js"]
 startDate: "2023-08-21"
 endDate: "2023-12-12"
+summary: リアルタイム為替レート取得・SQLiteへの自動蓄積・ローソク足チャートや移動平均線など多彩なグラフ表示に対応したWordPressプラグイン。
 ---
 
 WordPress為替情報プラグインを開発しました

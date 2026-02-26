@@ -3,6 +3,7 @@ title: 書籍LPページ
 startDate: 2025-02
 endDate: 2025-02
 techs: ["React","Fuse.js", "PHP","さくらレンタルサーバー"]
+summary: Fuse.jsによる曖昧検索・スクロール追従アニメーション・メール送信フォームを備えた書籍のLPページ。
 ---
 
 書籍のLPページを作成しました。

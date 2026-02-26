@@ -3,6 +3,7 @@ title: GASによるYouTube動画分析ツール
 startDate: 2024-07
 endDate: 2024-07
 techs: ["ChatGPT", "GAS", "Python", "Google Sheets","YouTube Data API"]
+summary: スプレッドシートの検索ワードからYouTube動画を自動検索し、ChatGPT APIで内容を27カテゴリに分類・要約するGASツール。
 ---
 
 ## 概要

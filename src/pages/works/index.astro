@@ -61,8 +61,8 @@ const works = (await getCollection("works")).sort(
               </div>
 
               {
-                work.data.description && (
-                  <p class="text-gray-700 mb-4">{work.data.description}</p>
+                work.data.summary && (
+                  <p class="text-gray-700 mb-4">{work.data.summary}</p>
                 )
               }
 

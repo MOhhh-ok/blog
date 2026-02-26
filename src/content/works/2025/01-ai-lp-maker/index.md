@@ -1,8 +1,9 @@
 ---
-title: AIでLPを自動生成するツールのPoC
+title: AIでLPを自動生成するツールのPoC（フルスタック）
 startDate: 2025-01
 endDate: 2025-01
 techs: ["Laravel","React", "XServer"]
+summary: Claude APIを利用して、ユーザー入力からHTML/CSS/画像ファイルを自動生成しZIPでダウンロードできるLP自動生成ツールのPoC。
 ---
 
 Claude APIを利用した、LP自動生成ツールのPoCを作成。

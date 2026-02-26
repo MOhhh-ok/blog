@@ -23,7 +23,7 @@ const works = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      description: z.string().optional(),
+      summary: z.string().optional(),
       startDate: z.coerce.date().optional(),
       endDate: z.coerce.date().optional(),
       aboutYear: z.coerce.number().optional(),

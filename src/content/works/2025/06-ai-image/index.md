@@ -3,6 +3,7 @@ title: AIアバター生成サービスのPoC
 startDate: 2025-06
 endDate: 2025-09
 techs: ["Python"]
+summary: FLUX.1-devモデルをLoRAでfine-tuningし、特定人物の顔を学習して複数バリエーションのアバター画像を生成するPoCサービス。
 ---
 
 同一人物のアバター生成サービスのPoCを作成
