@@ -14,7 +14,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import { PATHS } from "../../paths";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog", ({ data }) =>
+    import.meta.env.DEV || !data.draft
+  );
   const categories = flatCategoryTreeItems(CATEGORIES_TREE).map(c =>
     c.category
   );

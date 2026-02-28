@@ -6,7 +6,9 @@ import Header from "../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import { PATHS } from "../paths";
 
-const posts = await getCollection("blog");
+const posts = await getCollection("blog", ({ data }) =>
+  import.meta.env.DEV || !data.draft
+);
 posts.sort((a, b) =>
   new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
