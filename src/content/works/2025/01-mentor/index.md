@@ -1,6 +1,7 @@
 ---
 title: メンターとして未経験からのAI駆動開発プログラミング支援
 startDate: 2025-01
+endDate: 2026-06
 techs: ["Cursor", "TypeScript"]
 summary: オンラインでAI駆動開発環境の指南。プログラミング未経験から数週間でFacebook APIを用いた広告自動作成を実現。開発に参加して継続中
 ---
