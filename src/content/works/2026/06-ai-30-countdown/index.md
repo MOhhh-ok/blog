@@ -1,5 +1,6 @@
 ---
-title: "AIが自走する物語サイト（個人）"
+title: "AIが自走する物語サイト"
+personal: true
 startDate: 2026-05
 endDate: 2026-07
 techs: ["TypeScript", "React", "SQLite", "Drizzle", "Tailwind", "Railway"]

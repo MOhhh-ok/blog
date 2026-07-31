@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
+import rehypeExternalLinks from "rehype-external-links";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -18,6 +19,15 @@ export default defineConfig({
     shikiConfig: {
       theme: "gruvbox-dark-medium", // "github-dark", // または 'dracula', 'nord', 'monokai' など
     },
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: ["noopener", "noreferrer"],
+        },
+      ],
+    ],
   },
 
   vite: {

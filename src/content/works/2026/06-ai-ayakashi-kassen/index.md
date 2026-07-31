@@ -1,5 +1,6 @@
 ---
-title: "X連動型AIゲーム（個人）"
+title: "X連動型AIゲーム"
+personal: true
 draft: false
 startDate: 2026-06
 techs: ["TypeScript", "React", "SQLite", "Drizzle", "Tailwind", "Railway"]

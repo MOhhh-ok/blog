@@ -1,5 +1,6 @@
 ---
 title: "iOSアプリ個人開発"
+personal: true
 startDate: 2026-03
 endDate: 2026-04
 techs: ["React Native",  "Cloudflare", "Gemini", "Firebase", "Next.js"]
