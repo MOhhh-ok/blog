@@ -1,0 +1,104 @@
+<svg viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+  <rect width="1000" height="520" fill="#f2f0ee"/>
+  <style>
+    .title { font-size: 16px; font-weight: 700; fill: #191210; }
+    .stage { font-size: 14px; font-weight: 700; fill: #191210; }
+    .box-title { font-size: 13px; font-weight: 700; fill: #191210; }
+    .box-sub { font-size: 11px; fill: #555; }
+    .accent { fill: #bb5537; }
+    .caption { font-size: 11px; fill: #666; font-style: italic; }
+    .arrow { stroke: #666; stroke-width: 1.4; fill: none; }
+    .arrow-label { font-size: 11px; fill: #3b2922; }
+    .note { font-size: 11px; fill: #8a000d; }
+  </style>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#666"/>
+    </marker>
+  </defs>
+
+  <text x="500" y="28" text-anchor="middle" class="title">動画着せ替えパイプライン (全段 OSS 経路)</text>
+  <text x="500" y="48" text-anchor="middle" class="caption">1 モデルで解かず 2 段に分ける。人物静止画を「モーション源」と「見た目」の両枝に分岐させる。</text>
+
+  <!-- Left column inputs -->
+  <g transform="translate(30, 100)">
+    <rect x="0" y="0" width="180" height="60" rx="6" fill="#ffffff" stroke="#3b2922" stroke-width="1"/>
+    <text x="90" y="24" text-anchor="middle" class="box-title">服の参照画像</text>
+    <text x="90" y="42" text-anchor="middle" class="box-sub">flux/dev で生成 · flat lay</text>
+
+    <rect x="0" y="90" width="180" height="60" rx="6" fill="#ffffff" stroke="#3b2922" stroke-width="1"/>
+    <text x="90" y="114" text-anchor="middle" class="box-title">人物の静止画</text>
+    <text x="90" y="132" text-anchor="middle" class="box-sub">flux/dev で全身立ち姿</text>
+
+    <rect x="0" y="240" width="180" height="60" rx="6" fill="#ffffff" stroke="#3b2922" stroke-width="1"/>
+    <text x="90" y="264" text-anchor="middle" class="box-title">元動画 (5 秒)</text>
+    <text x="90" y="282" text-anchor="middle" class="box-sub">Wan2.2-Animate へのモーション源</text>
+  </g>
+
+  <!-- wan-i2v arrow label region -->
+  <text x="20" y="270" class="arrow-label accent" transform="rotate(-90, 20, 270)">wan-i2v (image-to-video)</text>
+
+  <!-- Stage 1 -->
+  <g transform="translate(280, 100)">
+    <text x="130" y="-8" text-anchor="middle" class="stage accent">静止画段</text>
+    <rect x="0" y="0" width="260" height="150" rx="8" fill="#fff" stroke="#bb5537" stroke-width="2"/>
+    <text x="130" y="30" text-anchor="middle" class="box-title accent">Qwen-Image-Edit</text>
+    <text x="130" y="48" text-anchor="middle" class="box-sub">Apache-2.0 / instruction 編集</text>
+    <text x="130" y="76" text-anchor="middle" class="box-sub">人物に参照の服を着せる</text>
+    <text x="130" y="100" text-anchor="middle" class="caption">1 枚 ~$0.03 · 目視選別で品質確定</text>
+    <text x="130" y="130" text-anchor="middle" class="note">失敗の 9 割はここで起きる</text>
+  </g>
+
+  <!-- Intermediate -->
+  <g transform="translate(310, 290)">
+    <rect x="0" y="0" width="200" height="50" rx="6" fill="#ffffff" stroke="#3b2922" stroke-width="1"/>
+    <text x="100" y="22" text-anchor="middle" class="box-title">着替え済み静止画</text>
+    <text x="100" y="40" text-anchor="middle" class="box-sub">動画段への「見た目」入力</text>
+  </g>
+
+  <!-- Stage 2 -->
+  <g transform="translate(620, 100)">
+    <text x="140" y="-8" text-anchor="middle" class="stage accent">動画段</text>
+    <rect x="0" y="0" width="280" height="360" rx="8" fill="#fff" stroke="#bb5537" stroke-width="2"/>
+    <text x="140" y="26" text-anchor="middle" class="box-title accent">Wan2.2-Animate</text>
+    <text x="140" y="44" text-anchor="middle" class="box-sub">見た目 + モーションを合成</text>
+
+    <rect x="14" y="66" width="252" height="120" rx="6" fill="#ffffff" stroke="#3b2922" stroke-width="1"/>
+    <text x="140" y="86" text-anchor="middle" class="box-title">replace mode</text>
+    <text x="140" y="106" text-anchor="middle" class="box-sub">人物マスク内に合成</text>
+    <text x="140" y="124" text-anchor="middle" class="box-sub">背景・顔を保持</text>
+    <text x="140" y="150" text-anchor="middle" class="note">マスクを超える服は切り詰め</text>
+    <text x="140" y="167" text-anchor="middle" class="caption">まずこちらを試す</text>
+
+    <rect x="14" y="206" width="252" height="140" rx="6" fill="#ffffff" stroke="#3b2922" stroke-width="1"/>
+    <text x="140" y="226" text-anchor="middle" class="box-title">move mode</text>
+    <text x="140" y="246" text-anchor="middle" class="box-sub">種静止画の世界を維持</text>
+    <text x="140" y="264" text-anchor="middle" class="box-sub">マスク拘束なし</text>
+    <text x="140" y="290" text-anchor="middle" class="note">背景・顔がドリフト</text>
+    <text x="140" y="307" text-anchor="middle" class="caption">replace で切り詰め時に切替</text>
+  </g>
+
+  <!-- Arrows -->
+  <!-- 服の参照 → Qwen -->
+  <path class="arrow" marker-end="url(#ar)" d="M210,130 C235,130 245,155 275,155"/>
+  <!-- 人物の静止画 → Qwen -->
+  <path class="arrow" marker-end="url(#ar)" d="M210,220 C235,220 245,195 275,195"/>
+
+  <!-- 人物の静止画 → 元動画 (wan-i2v) -->
+  <path class="arrow" marker-end="url(#ar)" d="M90,250 L90,336"/>
+
+  <!-- Qwen → 着替え済み静止画 -->
+  <path class="arrow" marker-end="url(#ar)" d="M410,250 L410,286"/>
+
+  <!-- 着替え済み静止画 → Wan2.2-Animate (見た目) -->
+  <path class="arrow" marker-end="url(#ar)" d="M510,313 C560,313 570,220 615,220"/>
+  <text x="530" y="212" class="arrow-label">見た目</text>
+
+  <!-- 元動画 → Wan2.2-Animate (モーション) -->
+  <path class="arrow" marker-end="url(#ar)" d="M210,340 C400,340 500,380 615,380"/>
+  <text x="380" y="368" class="arrow-label accent">モーション</text>
+
+  <!-- output -->
+  <text x="760" y="500" text-anchor="middle" class="caption">→ 完成動画 (5 秒)</text>
+</svg>
