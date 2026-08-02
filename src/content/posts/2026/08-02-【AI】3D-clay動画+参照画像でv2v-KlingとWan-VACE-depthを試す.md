@@ -4,7 +4,7 @@ pubDate: 2026-08-02
 categories: ["開発"]
 ---
 
-こんにちは、フリーランスエンジニアの太田雅昭です。この記事はほぼAIが実装、記事執筆を行っています。私は概要しか理解しておりません。
+こんにちは、フリーランスエンジニアの太田雅昭です。この記事はほぼAIで、私は概要しか理解しておりません。
 
 Three.js で作った質感なしの 3D 動画 (clay render) と参照画像を fal.ai の video-to-video に食わせて、写実的な短尺動画が作れるか触ってみた作業記録です。コードと全アセットは [blog-examples](https://github.com/mohhh-ok/blog-examples/tree/main/2026/08-02-3d-proxy-to-vace-video) に置いています。
 
