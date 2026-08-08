@@ -1,0 +1,130 @@
+<svg viewBox="0 0 1220 690" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, sans-serif">
+  <rect width="1220" height="690" fill="#f2f0ee"/>
+  <style>
+    .title { font-size: 17px; font-weight: 700; fill: #191210; }
+    .subtitle { font-size: 12px; fill: #555; }
+    .box-title { font-size: 13px; font-weight: 700; fill: #191210; }
+    .box-title-accent { font-size: 13px; font-weight: 700; fill: #bb5537; }
+    .box-sub { font-size: 11px; fill: #444; }
+    .note { font-size: 11px; font-weight: 600; fill: #8a000d; }
+    .badge-text { font-family: "SF Mono", Menlo, monospace; font-size: 10.5px; fill: #f0b9a4; }
+    .mono { font-family: "SF Mono", Menlo, monospace; font-size: 11px; fill: #3b2922; }
+    .arrow { stroke: #666; stroke-width: 1.4; fill: none; }
+    .arrow-accent { stroke: #bb5537; stroke-width: 2.4; fill: none; }
+    .blocked { stroke: #8a000d; stroke-width: 2; fill: none; stroke-dasharray: 6 5; }
+    .arrow-label { font-size: 11px; fill: #3b2922; }
+    .legend-text { font-size: 10.5px; fill: #555; }
+    .panel { fill: #ffffff; stroke: #d8d2cc; stroke-width: 1.2; }
+    .inner { fill: #faf8f6; stroke: #d8d2cc; stroke-width: 1; }
+    .badge { fill: #191210; }
+  </style>
+
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#666"/>
+    </marker>
+    <marker id="arAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#bb5537"/>
+    </marker>
+    <marker id="arBlocked" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a000d"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="42" class="title">Claude Code を dev container に隔離する — 構成と罠の位置</text>
+  <text x="40" y="64" class="subtitle">macOS + devcontainer CLI(VS Code 不要) / bind mount + named volumes + egress firewall</text>
+
+  <!-- ===== macOS host ===== -->
+  <rect x="40" y="100" width="360" height="460" rx="8" class="panel"/>
+  <text x="60" y="128" class="box-title">macOS ホスト</text>
+
+  <rect x="64" y="146" width="312" height="222" rx="6" class="inner"/>
+  <text x="80" y="170" class="box-title">リポジトリ ~/dev/myapp</text>
+  <text x="80" y="196" class="mono">package.json</text>
+  <text x="196" y="196" class="box-sub">packageManager で pnpm 固定</text>
+  <rect x="336" y="184" width="34" height="17" rx="4" class="badge"/><text x="342" y="196.5" class="badge-text">罠7</text>
+  <text x="80" y="222" class="mono">pnpm-lock.yaml</text>
+  <text x="212" y="222" class="box-sub">frozen install で保護</text>
+  <text x="80" y="248" class="mono">.devcontainer/</text>
+  <text x="212" y="248" class="box-sub">json + Dockerfile + firewall.sh</text>
+  <text x="80" y="274" class="mono">.output/</text>
+  <text x="196" y="274" class="box-sub">ビルド成果物(共有される)</text>
+  <text x="80" y="300" class="mono">node_modules/</text>
+  <text x="212" y="300" class="box-sub">macOS 用のまま無傷</text>
+  <text x="80" y="342" class="box-sub">コンテナからの書き込みはこのフォルダ内だけ</text>
+
+  <rect x="64" y="440" width="312" height="64" rx="6" class="inner"/>
+  <text x="80" y="466" class="box-title">Chrome</text>
+  <text x="80" y="488" class="box-sub">.output/ を拡張としてそのまま読み込む</text>
+  <path d="M 150 368 L 150 440" class="arrow" marker-end="url(#ar)"/>
+
+  <!-- ===== bind mount ===== -->
+  <path d="M 386 258 L 534 258" class="arrow-accent" marker-end="url(#arAccent)"/>
+  <path d="M 534 274 L 386 274" class="arrow-accent" marker-end="url(#arAccent)"/>
+  <text x="398" y="248" class="arrow-label">bind mount(双方向)</text>
+
+  <!-- ===== dev container ===== -->
+  <rect x="520" y="100" width="520" height="460" rx="8" class="panel"/>
+  <text x="540" y="128" class="box-title">dev container</text>
+  <text x="646" y="128" class="box-sub">typescript-node:22 + claude-code feature</text>
+
+  <rect x="544" y="146" width="340" height="266" rx="6" class="inner"/>
+  <text x="560" y="170" class="mono">/workspaces/myapp</text>
+
+  <rect x="560" y="184" width="308" height="46" rx="5" class="panel"/>
+  <text x="574" y="203" class="mono">node_modules</text>
+  <text x="694" y="203" class="box-title-accent">← named volume</text>
+  <text x="574" y="220" class="box-sub">Linux バイナリをホストに混ぜない</text>
+  <rect x="826" y="190" width="34" height="17" rx="4" class="badge"/><text x="832" y="202.5" class="badge-text">罠5</text>
+
+  <rect x="560" y="238" width="308" height="46" rx="5" class="panel"/>
+  <text x="574" y="257" class="mono">.pnpm-store</text>
+  <text x="694" y="257" class="box-title-accent">← named volume</text>
+  <text x="574" y="274" class="box-sub">store-dir 設定を無視した漏れに蓋をする</text>
+  <rect x="826" y="244" width="34" height="17" rx="4" class="badge"/><text x="832" y="256.5" class="badge-text">罠6</text>
+
+  <rect x="560" y="292" width="308" height="46" rx="5" class="panel"/>
+  <text x="574" y="311" class="mono">.output/</text>
+  <text x="574" y="328" class="box-sub">bind mount 経由でホストの Chrome から見える</text>
+
+  <rect x="560" y="346" width="308" height="46" rx="5" class="panel"/>
+  <text x="574" y="365" class="mono">claude --dangerously-skip-permissions</text>
+  <text x="574" y="382" class="box-sub">事故範囲はコンテナ + このフォルダに限定</text>
+
+  <rect x="544" y="428" width="340" height="56" rx="6" class="inner"/>
+  <text x="560" y="450" class="mono">/home/node/.claude</text>
+  <text x="726" y="450" class="box-title-accent">← named volume</text>
+  <text x="560" y="468" class="box-sub">要 chown。root 所有だと EACCES → "Invalid code"</text>
+  <rect x="826" y="436" width="34" height="17" rx="4" class="badge"/><text x="832" y="448.5" class="badge-text">罠8</text>
+
+  <text x="544" y="516" class="note">feature が未パッチ firewall を上書き(罠2)</text>
+  <text x="544" y="534" class="box-sub">→ postStart でパッチ版を cp してから実行</text>
+
+  <!-- ===== firewall bar ===== -->
+  <rect x="962" y="146" width="40" height="392" rx="6" class="badge"/>
+  <text x="988" y="402" class="badge-text" transform="rotate(-90 988 402)">egress firewall (init-firewall.sh)</text>
+  <rect x="920" y="152" width="34" height="17" rx="4" class="badge"/><text x="926" y="164.5" class="badge-text">罠1</text>
+  <rect x="920" y="174" width="34" height="17" rx="4" class="badge"/><text x="926" y="186.5" class="badge-text">罠3</text>
+  <rect x="920" y="196" width="34" height="17" rx="4" class="badge"/><text x="926" y="208.5" class="badge-text">罠4</text>
+
+  <path d="M 884 230 L 962 230" class="arrow" marker-end="url(#ar)"/>
+
+  <!-- ===== internet ===== -->
+  <rect x="1056" y="170" width="140" height="140" rx="6" class="inner"/>
+  <text x="1068" y="192" class="box-title">許可(allowlist)</text>
+  <text x="1068" y="214" class="box-sub">GitHub(IP range)</text>
+  <text x="1068" y="232" class="box-sub">registry.npmjs.org</text>
+  <text x="1068" y="250" class="box-sub">api.anthropic.com</text>
+  <text x="1068" y="268" class="box-sub">claude.ai ほか</text>
+  <text x="1068" y="292" class="note">ログイン用は自分で追加</text>
+  <path d="M 1002 226 L 1056 226" class="arrow-accent" marker-end="url(#arAccent)"/>
+
+  <rect x="1056" y="350" width="140" height="64" rx="6" class="inner"/>
+  <text x="1068" y="374" class="box-title">それ以外</text>
+  <text x="1068" y="396" class="box-sub">example.com など遮断</text>
+  <path d="M 1002 378 L 1056 378" class="blocked" marker-end="url(#arBlocked)"/>
+
+  <!-- ===== legend ===== -->
+  <text x="40" y="608" class="legend-text">罠1 allowlist の消滅ドメイン(NXDOMAIN)で起動失敗 ・ 罠2 feature がスクリプトを上書き ・ 罠3 再実行が自分の DROP に塞がれてハング ・ 罠4 ipset 重複 add で即死</text>
+  <text x="40" y="630" class="legend-text">罠5 node_modules の macOS/Linux 混線 ・ 罠6 pnpm store がホストへ漏れる ・ 罠7 pnpm@latest がホストと不一致 ・ 罠8 ~/.claude が root 所有で OAuth "Invalid code"</text>
+</svg>
