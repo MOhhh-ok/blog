@@ -1,14 +1,21 @@
 ---
-title: "【AI】OSS版Cloudflare OSをローカルで試す — Gadget生成・Gatekeeper自作・GA4連携まで"
-pubDate: 2026-08-08
-categories: ["AI"]
+title: "OSS版Cloudflare OSをローカルで試す — Gadget生成・Gatekeeper自作・GA4連携まで"
+emoji: "☁️"
+type: "tech"
+topics: ["cloudflare", "cloudflareworkers", "ai", "oss"]
+published: true
 ---
-
-こんにちは、フリーランスエンジニアの太田雅昭です。
 
 2026年8月にOSS化された([Apache 2.0](https://github.com/cloudflare/cloudflare-os/blob/main/LICENSE))Cloudflareの社内AIワークスペース「Cloudflare OS」を手元でクローンして触ってみました。ほぼAI任せで実装からテストまで行い、この記事もAIの書いたものを私が微修正しています。
 
 `pnpm run-local` で起動するところから、ローカルLLMでのGadget生成失敗、本家のバグの1行パッチ、GA4連携用Gatekeeperの自作、E2E確認までの記録です。
+
+## TL;DR
+
+- ローカルLLM(qwen2.5:14b-instruct)はツール呼び出しが崩壊し、Gadget生成に2回とも失敗した。プラットフォーム側は正常なため、BYOKでSonnet級の外部モデルを繋ぐのが前提になる
+- Gadgetプレビュー用iframeの`sandbox`属性に`allow-forms`が欠落しており、生成アプリのフォーム送信が動かなかった。原因はホスト側の1行で、生成コードを変えずに直せた(上流未報告)
+- GA4連携用のGatekeeperを自作: サービスアカウントJSON貼り付け + JWT Bearer(RS256, Web Crypto API)で認証。読み取り専用なら`applyAction`/`revertAction`は例外、`rejectAction`はno-opで済み、承認キューをフルに実装しなくてよい(ただし`authorizeObservation()`は3メソッドすべてで省略できない)
+- 定期実行(Scheduler)はローカルではalarm未実装・vendor未登録などでたどり着けず、README通り「early access」の粗さが残る
 
 ## Cloudflare OS とは
 
@@ -34,7 +41,7 @@ pnpm run-local
 
 LLMのAPIキーは事前の `.env` 設定ではなく、起動後にアプリ内の「モデルを追加」モーダルへ貼り付けるBYOK方式です(Anthropic / OpenAI / Google / Cloudflare Workers AI / Ollama対応)。Ollamaは API URL に `http://localhost:11434` が自動入力され、API Tokenは空欄で通ります。
 
-![Add AI Modelダイアログ。OllamaのModel IDにqwen2.5:14b-instructを入力、API URLはhttp://localhost:11434が自動入力済み](./08-08-cloudflare-os-addmodel.webp)
+![Add AI Modelダイアログ。OllamaのModel IDにqwen2.5:14b-instructを入力、API URLはhttp://localhost:11434が自動入力済み](https://raw.githubusercontent.com/mohhh-ok/blog/main/src/content/posts/2026/08-08-cloudflare-os-addmodel.webp)
 
 ローカル起動では、ユーザー名を `admin` にしてサインアップすると管理者権限が付きます(開発用に `ADMINS = ["admin"]` が注入されているため)。
 
@@ -65,13 +72,13 @@ Blocked form submission to '' because the form's frame is sandboxed and the 'all
 
 この1行で、生成コードを一切変えずにフォームが動くようになりました(リロード後のSQLite永続化も確認)。上流には未報告のissueです(2026-08-08時点)。
 
-![パッチ後の読書ログGadget。書名「三体」を追加すると一覧に即反映される](./08-08-cloudflare-os-gadget-fixed.webp)
+![パッチ後の読書ログGadget。書名「三体」を追加すると一覧に即反映される](https://raw.githubusercontent.com/mohhh-ok/blog/main/src/content/posts/2026/08-08-cloudflare-os-gadget-fixed.webp)
 
 ## 山場: GA4読み取り専用のGatekeeperを自作する
 
 Cloudflare OSにはGoogle Analytics用のGatekeeperが標準では存在しません。試しにいきなり `fetch` させようとしても、GadgetやエージェントのWorkerは `globalOutbound: null` で外部通信そのものが遮断されていて、Gatekeeperを書く以外に外へ出る道がありません。公式の `write-gatekeeper` スキルの手順に沿って、GA4の読み取り専用Gatekeeperを新規に実装しました。
 
-![Cloudflare OSのGatekeeperアーキテクチャ。エージェント/GadgetのWorkerは外部fetchが遮断され、Gatekeeperの3層(Vendor/Account/Session)だけがGA4への唯一の経路になる](./08-08-cloudflare-os-gatekeeper.svg)
+![Cloudflare OSのGatekeeperアーキテクチャ。エージェント/GadgetのWorkerは外部fetchが遮断され、Gatekeeperの3層(Vendor/Account/Session)だけがGA4への唯一の経路になる](https://raw.githubusercontent.com/mohhh-ok/blog/main/src/content/posts/2026/08-08-cloudflare-os-gatekeeper.svg)
 
 ### 認証方式: サービスアカウントJSON貼り付け + JWT Bearer
 
@@ -109,7 +116,7 @@ JWT署名(`jwt.ts`)はNode暗号ライブラリを使わず、Workers標準のWe
 
 エージェントは勝手にデータへアクセスできず、まず接続承認カード(Deny / Set up)を出してきます。「Set up」からアカウント選択 → configurator UI(Gatekeeper側が提供するiframe)でプロパティ選択、と進むと、バインディング名(`GA_PROPERTY`)が自動導出されてGadgetに配線されます。生成は承認操作込みで約3分、$0.12でした。
 
-![生成された週次アクセスレポートGadget。2025-10の日別activeUsers/screenPageViewsテーブルと期間合計を表示](./08-08-cloudflare-os-ga4-report.webp)
+![生成された週次アクセスレポートGadget。2025-10の日別activeUsers/screenPageViewsテーブルと期間合計を表示](https://raw.githubusercontent.com/mohhh-ok/blog/main/src/content/posts/2026/08-08-cloudflare-os-ga4-report.webp)
 
 データのある期間は日別テーブルと合計が正しく表示され、データが存在しない期間に切り替えるとクラッシュせず「データがありません」という明示的な空状態になりました。
 
