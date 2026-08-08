@@ -81,3 +81,22 @@ const ogImage = slug
   name="google-site-verification"
   content="HPageh5He5lHhmIBYA_-nwHx7rrSzU_vV_4q2o4Eh_c"
 />
+
+<!-- Google tag (gtag.js) -->
+{import.meta.env.PROD && (
+  <>
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-C0D9GZFVZE"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-C0D9GZFVZE");
+    </script>
+  </>
+)}
