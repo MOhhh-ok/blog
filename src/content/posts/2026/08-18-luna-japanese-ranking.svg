@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Cの次に重い人はB</title>
+  <desc id="desc">体重の重い順はE、D、C、B、A。Cの一つ下の順位はBだが、GPT-5.6 LunaはDと誤答した。</desc>
+  <rect width="1200" height="630" fill="#f2f0ee"/>
+  <text x="600" y="70" text-anchor="middle" font-family="sans-serif" font-size="38" font-weight="700" fill="#19120f">Cの次に体重が重い人は？</text>
+
+  <text x="70" y="135" font-family="sans-serif" font-size="24" font-weight="700" fill="#3b2922">重い順</text>
+  <g font-family="sans-serif" text-anchor="middle">
+    <rect x="70" y="165" width="190" height="115" rx="18" fill="#ffffff" stroke="#3b2922" stroke-width="3"/>
+    <text x="165" y="213" font-size="30" font-weight="700" fill="#19120f">E</text>
+    <text x="165" y="255" font-size="25" fill="#3b2922">90kg</text>
+
+    <rect x="285" y="165" width="190" height="115" rx="18" fill="#ffffff" stroke="#3b2922" stroke-width="3"/>
+    <text x="380" y="213" font-size="30" font-weight="700" fill="#19120f">D</text>
+    <text x="380" y="255" font-size="25" fill="#3b2922">80kg</text>
+
+    <rect x="500" y="165" width="190" height="115" rx="18" fill="#bb5537"/>
+    <text x="595" y="213" font-size="30" font-weight="700" fill="#ffffff">C</text>
+    <text x="595" y="255" font-size="25" fill="#ffffff">70kg</text>
+
+    <rect x="715" y="165" width="190" height="115" rx="18" fill="#ffffff" stroke="#8a000d" stroke-width="5"/>
+    <text x="810" y="213" font-size="30" font-weight="700" fill="#8a000d">B</text>
+    <text x="810" y="255" font-size="25" fill="#3b2922">60kg</text>
+
+    <rect x="930" y="165" width="190" height="115" rx="18" fill="#ffffff" stroke="#3b2922" stroke-width="3"/>
+    <text x="1025" y="213" font-size="30" font-weight="700" fill="#19120f">A</text>
+    <text x="1025" y="255" font-size="25" fill="#3b2922">50kg</text>
+  </g>
+
+  <path d="M685 315 C730 345 775 345 815 315" fill="none" stroke="#8a000d" stroke-width="6" stroke-linecap="round"/>
+  <path d="M804 311 L818 315 L810 328" fill="none" stroke="#8a000d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="750" y="385" text-anchor="middle" font-family="sans-serif" font-size="29" font-weight="700" fill="#8a000d">順位でCの一つ下 = B</text>
+
+  <rect x="70" y="430" width="510" height="130" rx="20" fill="#ffffff" stroke="#8a000d" stroke-width="4"/>
+  <text x="105" y="480" font-family="sans-serif" font-size="27" font-weight="700" fill="#8a000d">正解</text>
+  <text x="105" y="530" font-family="sans-serif" font-size="35" font-weight="700" fill="#19120f">B（60kg）</text>
+
+  <rect x="620" y="430" width="510" height="130" rx="20" fill="#3b2922"/>
+  <text x="655" y="480" font-family="sans-serif" font-size="27" font-weight="700" fill="#f0b9a4">GPT-5.6 Luna</text>
+  <text x="655" y="530" font-family="sans-serif" font-size="35" font-weight="700" fill="#ffffff">D（80kg）と誤答</text>
+</svg>
