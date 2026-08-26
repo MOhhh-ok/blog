@@ -14,6 +14,7 @@ export const CATEGORIES = [
   "Python",
   "GAS",
   "AI",
+  "TTS",
   "PHP",
   "Next.js",
   "TypeScript",
@@ -63,7 +64,9 @@ export const CATEGORIES_TREE: CategoryTreeItem[] = [
   },
   {
     category: "AI",
-    children: [],
+    children: [
+      { category: "TTS" },
+    ],
   },
   { category: "C2PA", children: [] },
   {

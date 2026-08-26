@@ -1,7 +1,7 @@
 ---
 title: "【AI】Fish Audioのzero-shot voice cloneは毎回同じ声が出るのか【話者embeddingで測定】"
 pubDate: 2026-08-26
-categories: ["AI"]
+categories: ["TTS"]
 ---
 
 こんにちは、フリーランスエンジニアの太田雅昭です。この記事はほとんどAIが書いたものを、私が加筆修正しています。検証不十分な部分もあるかと思いますが、ご容赦ください。ご指摘等ございましたら、Github issueか、Xでお願いいたします。

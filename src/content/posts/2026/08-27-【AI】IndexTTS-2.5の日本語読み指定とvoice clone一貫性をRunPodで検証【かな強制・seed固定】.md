@@ -1,7 +1,7 @@
 ---
 title: "【AI】IndexTTS-2.5の日本語読み指定とvoice clone一貫性をRunPodで検証【かな強制・seed固定】"
 pubDate: 2026-08-27
-categories: ["AI"]
+categories: ["TTS"]
 ---
 
 こんにちは、フリーランスエンジニアの太田雅昭です。この記事はほとんどAIが書いたものを、私が加筆修正しています。検証不十分な部分もあるかと思いますが、ご容赦ください。ご指摘等ございましたら、Github issueか、Xでお願いいたします。
