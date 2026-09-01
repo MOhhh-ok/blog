@@ -1,5 +1,5 @@
 ---
-title: 業務システム（フルスタック）
+title: 業務システム
 startDate: 2025-02
 endDate: 2025-04
 techs: ["Next.js", "XServer VPS"]

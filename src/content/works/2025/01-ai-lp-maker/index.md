@@ -1,5 +1,5 @@
 ---
-title: AIでLPを自動生成するツールのPoC（フルスタック）
+title: AIでLPを自動生成するツールのPoC
 startDate: 2025-01
 endDate: 2025-01
 techs: ["Laravel","React", "XServer"]
