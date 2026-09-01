@@ -1,5 +1,5 @@
 ---
-title: "iOSアプリ個人開発"
+title: "うたnote"
 personal: true
 startDate: 2026-03
 endDate: 2026-04

@@ -23,7 +23,6 @@ chrome --pack-extension
 
 ```
 -----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDggzvcnCAJE7ap
 ...
 ...
 ...
@@ -37,7 +36,7 @@ manifest.jsonのキーに入れます。
 
 ```
 {
-  "key": "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDggzvcnCAJE7ap............"
+  "key": "..."
 ```
 
 これで、Extensionのキーを指定できました。あとは拡張機能を修正したら、インストールした時と同様に、「パッケージ化されていない拡張機能を読み込む」で読み込めば上書きされます。

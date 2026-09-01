@@ -10,7 +10,7 @@ categories: ["AI"]
 
 Claude Tagがリリースされました。これはSlackでClaude Codeを呼び出すものです。
 
-これにインスピレーションを受けまして、個人開発のリポに、GitHub Actions 経由で Claude Code を常駐させる「issue-bot」を仕込みました。issue を立てたら数十秒で Bot がコードを読みに行って返答する、コメントに `/ai` と書けば追記で返事をくれる。想像以上に便利で、もう手動 issue 運用に戻れる気がしないので書き残しておきます。
+これにインスピレーションを受けまして、自分のリポに、GitHub Actions 経由で Claude Code を常駐させる「issue-bot」を仕込みました。issue を立てたら数十秒で Bot がコードを読みに行って返答する、コメントに `/ai` と書けば追記で返事をくれる。想像以上に便利で、もう手動 issue 運用に戻れる気がしないので書き残しておきます。
 
 ![issue-bot のリクエスト処理フローと 4 つの安全策](./06-27-issue-bot-architecture.svg)
 

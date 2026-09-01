@@ -1,0 +1,5 @@
+# 2025-11 WordPress 移行コミットに含まれる Chrome 拡張記事の例示鍵。作業ツリー側は伏せ字化済み (2026-09)
+e73ce2dad052dc153c998af6243c9be414085ba3:src/content/blog/2025/02-11-【chrome拡張】開発インストールでデータを引き継ぐ.md:private-key:25
+e73ce2dad052dc153c998af6243c9be414085ba3:src/content/blog/2025/02-11-【chrome拡張】開発インストールでデータを引き継ぐ.md:generic-api-key:40
+e73ce2dad052dc153c998af6243c9be414085ba3:transport/WordPress.2025-11-10.xml:generic-api-key:25911
+e73ce2dad052dc153c998af6243c9be414085ba3:transport/WordPress.2025-11-10.xml:private-key:25892
